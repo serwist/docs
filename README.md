@@ -1,17 +1,27 @@
-# A Swiss Army knife for service workers.
+This is Serwist's documentation!
 
-Serwist is a collection of JavaScript libraries for [Progressive Web Apps](https://web.dev/progressive-web-apps/).
+## Getting started
 
-It is a fork of Workbox that came to be due to the its development being stagnated. Most work was done by Google LLC's team and the community.
+> Run these commands in the root directory of this project, not in this one.
 
----
+First, install the dependencies:
 
-## Documentation
+```bash
+pnpm i
+```
 
-- [Overview](https://developers.google.com/web/tools/workbox/) ([site source](https://github.com/google/WebFundamentals/tree/main/src/content/en/tools/workbox))
-- [Get started](https://developers.google.com/web/tools/workbox/guides/get-started)
-- [Contribute](/CONTRIBUTING.md)
+Then build the packages:
 
-## Contributing
+```bash
+pnpm build
+```
 
-Please see [our contributing guide](/CONTRIBUTING.md).
+Then run the development server:
+
+```bash
+cd docs && pnpm dev
+```
+
+Open http://localhost:5173 with your browser to see the result.
+
+You can now start editing! Pages auto-update as you edit their files.
