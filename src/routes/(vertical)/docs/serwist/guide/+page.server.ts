@@ -2,20 +2,19 @@ import { encodeOpenGraphImage } from "$lib/og";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = () => ({
-  title: "serwist",
-  ogImage: encodeOpenGraphImage("serwist"),
+  title: "Diving deeper - serwist",
+  ogImage: encodeOpenGraphImage({
+    title: "Diving deeper",
+    desc: "serwist",
+  }),
   toc: [
     {
-      title: "serwist",
-      id: "serwist",
+      title: "Diving deeper",
+      id: "guide",
       children: [
         {
           title: "Introduction",
           id: "introduction",
-        },
-        {
-          title: "The Serwist API",
-          id: "api",
         },
       ],
     },
