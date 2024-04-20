@@ -3,15 +3,15 @@ import { encodeOpenGraphImage } from "$lib/og";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = ({ locals }) => ({
-  title: "plugins - Configuring - @serwist/vite",
+  title: "include - Configuring - @serwist/webpack-plugin",
   ogImage: encodeOpenGraphImage({
-    title: "plugins",
-    desc: "Configuring - @serwist/vite",
+    title: "include",
+    desc: "Configuring - @serwist/webpack-plugin",
   }),
   toc: [
     {
-      title: "plugins",
-      id: "plugins",
+      title: "include",
+      id: "include",
       children: [
         {
           title: "First added",
@@ -36,25 +36,11 @@ export const load: PageServerLoad = ({ locals }) => ({
     usage: highlightCode(
       locals.highlighter,
       {
-        "vite.config.ts": {
-          code: `import replace from "@rollup/plugin-replace";
-
-export default defineConfig({
-  plugins: [
-    // Other plugins...
-    serwist({
-      swSrc: "src/sw.ts",
-      swDest: "sw.js",
-      globDirectory: "dist",
-      injectionPoint: "self.__SW_MANIFEST",
-      rollupFormat: "iife",
-      plugins: [
-        replace({
-          __BUILD_DATE__: () => JSON.stringify(new Date()),
-          __BUILD_VERSION__: 15,
-        }),
-      ],
-    }),
+        "webpack.config.js": {
+          code: `new InjectManifest({
+  include: [
+    /\\.(js|css|json)$/, 
+    ({ asset }) => asset.name.startsWith("client/"),
   ],
 });`,
           lang: "javascript",

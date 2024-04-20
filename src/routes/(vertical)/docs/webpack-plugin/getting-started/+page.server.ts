@@ -3,10 +3,10 @@ import { encodeOpenGraphImage } from "$lib/og";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = ({ locals }) => ({
-  title: "Getting started - @serwist/vite",
+  title: "Getting started - @serwist/webpack-plugin",
   ogImage: encodeOpenGraphImage({
     title: "Getting started",
-    desc: "@serwist/vite",
+    desc: "@serwist/webpack-plugin",
   }),
   toc: [
     {
@@ -19,7 +19,7 @@ export const load: PageServerLoad = ({ locals }) => ({
           id: "implementation",
           children: [
             {
-              title: "Step 1: Add Serwist's Vite plugin",
+              title: "Step 1: Add Serwist's webpack plugin",
               id: "adding-plugin",
             },
             {
@@ -52,50 +52,72 @@ export const load: PageServerLoad = ({ locals }) => ({
       locals.highlighter,
       {
         npm: {
-          code: "npm i -D @serwist/vite @serwist/window serwist",
+          code: "npm i -D @serwist/webpack-plugin @serwist/window serwist",
           lang: "bash",
         },
         yarn: {
-          code: "yarn add -D @serwist/vite @serwist/window serwist",
+          code: "yarn add -D @serwist/webpack-plugin @serwist/window serwist",
           lang: "bash",
         },
         pnpm: {
-          code: "pnpm add -D @serwist/vite @serwist/window serwist",
+          code: "pnpm add -D @serwist/webpack-plugin @serwist/window serwist",
           lang: "bash",
         },
         bun: {
-          code: "bun add -D @serwist/vite @serwist/window serwist",
+          code: "bun add -D @serwist/webpack-plugin serwist",
           lang: "bash",
         },
       },
-      { idPrefix: "installing-serwist-vite" },
+      { idPrefix: "installing-serwist-webpack-plugin" },
     ),
     basicUsage: {
       wrapConfig: highlightCode(
         locals.highlighter,
         {
-          "vite.config.ts": {
-            code: `import { serwist } from "@serwist/vite";
-import react from "@vitejs/plugin-react-swc";
-import { defineConfig } from "vite";
+          "webpack.config.ts": {
+            code: `import fs from "node:fs";
+import path from "node:path";
 
-// https://vitejs.dev/config/
-export default defineConfig({
+import { InjectManifest } from "@serwist/webpack-plugin";
+import type { Configuration } from "webpack";
+
+const dev = process.env.NODE_ENV === "development";
+const rootDir = fs.realpathSync(process.cwd());
+const srcDir = path.join(rootDir, "src");
+const destDir = path.join(rootDir, "dist");
+
+const clientEntry = path.resolve(srcDir, "client.ts");
+
+export default {
+  target: "web",
+  name: "client",
+  module: {
+    rules: [
+      // Insert rules...
+    ],
+  },
+  entry: clientEntry,
+  output: {
+    publicPath: "/",
+    path: path.resolve(destDir, "public"),
+    filename: "static/js/[name]-[contenthash:8].js",
+    chunkFilename: "static/js/[name]-[contenthash:8].chunk.js",
+    assetModuleFilename: "static/media/[name].[hash][ext]",
+  },
   plugins: [
-    react(),
-    serwist({
-      swSrc: "src/sw.ts",
-      swDest: "sw.js",
-      globDirectory: "dist",
-      injectionPoint: "self.__SW_MANIFEST",
-      rollupFormat: "iife",
+    // swDest is automatically resolved to "$\{output.path}/sw.js"
+    new InjectManifest({
+      swSrc: path.resolve(srcDir, "sw.ts"),
+      disablePrecacheManifest: dev,
+      // Insert something...
+      additionalPrecacheEntries: !dev ? [] : undefined,
     }),
   ],
-});`,
-            lang: "javascript",
+} satisfies Configuration;`,
+            lang: "typescript",
           },
         },
-        { idPrefix: "adding-plugin" },
+        { idPrefix: "adding-plugin", useTwoslash: false },
       ),
       tsConfig: highlightCode(
         locals.highlighter,
@@ -105,11 +127,6 @@ export default defineConfig({
   // Other stuff...
   "compilerOptions": {
     // Other options...
-    "types": [
-      // Other types...
-      // This allows Serwist to properly type "virtual:serwist".
-      "@serwist/vite/typings"
-    ],
     "lib": [
       // Other libs...
       // Add this! Doing so adds WebWorker and ServiceWorker types to the global.
@@ -126,8 +143,7 @@ export default defineConfig({
         locals.highlighter,
         {
           "sw.ts": {
-            code: `import { defaultCache } from "@serwist/vite/worker";
-import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
+            code: `import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
 import { Serwist } from "serwist";
 
 // This declares the value of \`injectionPoint\` to TypeScript.
@@ -147,7 +163,8 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
+  // We leave this up to you :)
+  runtimeCaching: [],
 });
 
 serwist.addEventListeners();`,
@@ -191,16 +208,13 @@ serwist.addEventListeners();`,
         locals.highlighter,
         {
           "src/App.tsx": {
-            code: `// @types: @serwist/vite/typings
-// ---cut-before---
-import { swUrl, swScope, swType } from "virtual:serwist";
-import { useEffect } from "react";
+            code: `import { useEffect } from "react";
 
 export default function App() {
   useEffect(() => {
     const loadSerwist = async () => {
       if ("serviceWorker" in navigator) {
-        const serwist = new (await import("@serwist/window")).Serwist(swUrl, { scope: swScope, type: swType });
+        const serwist = new (await import("@serwist/window")).Serwist("/sw.js", { scope: "/", type: "classic" });
 
         serwist.addEventListener("installed", () => {
           console.log("Serwist installed!");
@@ -238,11 +252,11 @@ export default function App() {
   <link rel="manifest" href="/manifest.json">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:url" content="https://yourdomain.com">
-  <meta name="twitter:title" content="My Awesome PWA app">
+  <meta name="twitter:title" content="My awesome PWA app">
   <meta name="twitter:description" content="Best PWA app in the world!">
   <meta name="twitter:image" content="/icons/twitter.png">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="My Awesome PWA app">
+  <meta property="og:title" content="My awesome PWA app">
   <meta property="og:description" content="Best PWA app in the world!">
   <meta property="og:site_name" content="My awesome PWA app">
   <meta property="og:url" content="https://yourdomain.com">
