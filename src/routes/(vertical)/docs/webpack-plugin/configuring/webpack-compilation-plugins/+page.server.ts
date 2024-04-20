@@ -3,15 +3,15 @@ import { encodeOpenGraphImage } from "$lib/og";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = ({ locals }) => ({
-  title: "plugins - Configuring - @serwist/vite",
+  title: "webpackCompilationPlugins - Configuring - @serwist/webpack-plugin",
   ogImage: encodeOpenGraphImage({
-    title: "plugins",
-    desc: "Configuring - @serwist/vite",
+    title: "webpackCompilationPlugins",
+    desc: "Configuring - @serwist/webpack-plugin",
   }),
   toc: [
     {
-      title: "plugins",
-      id: "plugins",
+      title: "webpackCompilationPlugins",
+      id: "webpack-compilation-plugins",
       children: [
         {
           title: "First added",
@@ -36,24 +36,14 @@ export const load: PageServerLoad = ({ locals }) => ({
     usage: highlightCode(
       locals.highlighter,
       {
-        "vite.config.ts": {
-          code: `import replace from "@rollup/plugin-replace";
-
-export default defineConfig({
-  plugins: [
-    // Other plugins...
-    serwist({
-      swSrc: "src/sw.ts",
-      swDest: "sw.js",
-      globDirectory: "dist",
-      injectionPoint: "self.__SW_MANIFEST",
-      rollupFormat: "iife",
-      plugins: [
-        replace({
-          __BUILD_DATE__: () => JSON.stringify(new Date()),
-          __BUILD_VERSION__: 15,
-        }),
-      ],
+        "webpack.config.js": {
+          code: `new InjectManifest({
+  webpackCompilationPlugins: [
+    webpack.DefinePlugin({
+      __BUILD_TIME__: webpack.DefinePlugin.runtimeValue(Date.now, {
+        fileDependencies: [path.resolve(__dirname, "sample.txt")],
+      }),
+      __BUILD_VERSION__: 15,
     }),
   ],
 });`,

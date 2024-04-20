@@ -3,12 +3,12 @@ import { encodeOpenGraphImage } from "$lib/og";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = ({ locals }) => ({
-  title: "@serwist/next",
-  ogImage: encodeOpenGraphImage("@serwist/next"),
+  title: "@serwist/nuxt",
+  ogImage: encodeOpenGraphImage("@serwist/nuxt"),
   toc: [
     {
-      title: "@serwist/next",
-      id: "serwist-next",
+      title: "@serwist/nuxt",
+      id: "serwist-nuxt",
       children: [
         {
           title: "Introduction",
@@ -34,19 +34,19 @@ export const load: PageServerLoad = ({ locals }) => ({
       locals.highlighter,
       {
         npm: {
-          code: "npx degit serwist/serwist/examples/next-basic my-app",
+          code: "npx degit serwist/serwist/examples/nuxt-basic my-app",
           lang: "bash",
         },
         yarn: {
-          code: "yarn degit serwist/serwist/examples/next-basic my-app",
+          code: "yarn degit serwist/serwist/examples/nuxt-basic my-app",
           lang: "bash",
         },
         pnpm: {
-          code: "pnpx degit serwist/serwist/examples/next-basic my-app",
+          code: "pnpx degit serwist/serwist/examples/nuxt-basic my-app",
           lang: "bash",
         },
         bun: {
-          code: "bunx degit serwist/serwist/examples/next-basic my-app",
+          code: "bunx degit serwist/serwist/examples/nuxt-basic my-app",
           lang: "bash",
         },
       },
