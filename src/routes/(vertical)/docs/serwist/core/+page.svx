@@ -1,12 +1,12 @@
 ---
 layout: docs
+title: "Using the Serwist API"
+footer: "serwist"
 ---
 <script>
   import Tabs from "$components/Tabs.svelte";
   import Tab from "$components/Tab.svelte";
 </script>
-
-# Using the Serwist API
 
 ## Introduction
 

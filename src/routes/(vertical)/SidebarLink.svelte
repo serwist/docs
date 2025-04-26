@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import ChevronRight from "$components/icons/ChevronRight.svelte";
   import NavLink from "$components/layouts/NavLink.svelte";
   import { clsx } from "$lib/clsx";
@@ -8,19 +8,19 @@
   import SidebarLink from "./SidebarLink.svelte";
 
   const { title, href, children }: SidebarLinkProps = $props();
-  const isActive = $derived(href === $page.url.pathname || href === `${$page.url.pathname}/`);
+  const isActive = $derived(href === page.url.pathname || href === `${page.url.pathname}/`);
   let isOpen = $state(false);
 
   $effect(() => {
     if (!isOpen) {
-      isOpen = $page.url.pathname.startsWith(href);
+      isOpen = page.url.pathname.startsWith(href);
     }
   });
 </script>
 
 <li class="flex flex-col pt-[5px]">
   {#if children}
-    <details open={isOpen || $page.url.pathname.startsWith(href)} class="[&[open]>summary>span>svg]:rotate-90">
+    <details open={isOpen || page.url.pathname.startsWith(href)} class="[&[open]>summary>span>svg]:rotate-90">
       <summary class="flex flex-row">
         <NavLink {href} {isActive} noEndRounded={isActive} textCenter={false}>
           {title}

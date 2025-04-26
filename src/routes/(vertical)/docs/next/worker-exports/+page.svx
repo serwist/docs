@@ -1,12 +1,12 @@
 ---
 layout: docs
+title: "Worker exports"
+footer: "@serwist/next"
 ---
 <script>
   import Tabs from "$components/Tabs.svelte";
   import Tab from "$components/Tab.svelte";
 </script>
-
-# Worker exports
 
 ## Introduction
 

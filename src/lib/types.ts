@@ -14,17 +14,15 @@ export interface TwoslashProps {
   timeout: NodeJS.Timeout | undefined;
 }
 
-export type OpenGraphImage =
-  | string
-  | {
-      title: string;
-      desc: string;
-    };
-
 export interface SidebarLink {
   title: string;
   href: string;
   children?: SidebarLink[];
+}
+
+export interface SidebarGroup {
+  title: string;
+  children: SidebarLink[];
 }
 
 export interface BlogEntry {

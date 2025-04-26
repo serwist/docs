@@ -1,12 +1,11 @@
 ---
 layout: docs
+title: "swSrc (InjectManifest)"
 ---
 <script>
   import Tabs from "$components/Tabs.svelte";
   import Tab from "$components/Tab.svelte";
 </script>
-
-# swSrc (InjectManifest only)
 
 ## First added
 

@@ -1,5 +1,5 @@
 // See https://kit.svelte.dev/docs/types#app
-import type { BlogMetadata, OpenGraphImage } from "$lib/types";
+import type { BlogMetadata, OpenGraphImage, SidebarGroup } from "$lib/types";
 import type { getHighlighter } from "shiki";
 import type { Component } from "svelte";
 
@@ -15,7 +15,10 @@ declare global {
     // interface Locals {}
     interface PageData {
       title?: string;
+      noDefaultTitle?: boolean;
       ogImage?: string;
+      ogFooter?: string;
+      sidebar?: SidebarGroup[];
     }
     // interface Platform {}
   }

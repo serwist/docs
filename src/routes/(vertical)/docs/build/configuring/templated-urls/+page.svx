@@ -1,12 +1,11 @@
 ---
 layout: docs
+title: "templatedURLs"
 ---
 <script>
   import Tabs from "$components/Tabs.svelte";
   import Tab from "$components/Tab.svelte";
 </script>
-
-# templatedURLs
 
 ## First added
 

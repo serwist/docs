@@ -1,13 +1,13 @@
 ---
 layout: docs
+title: "Getting started"
+footer: "@serwist/webpack-plugin"
 ---
 <script>
   import Callout from "$components/Callout.svelte";
   import Tabs from "$components/Tabs.svelte";
   import Tab from "$components/Tab.svelte";
 </script>
-
-# Getting started
 
 <Callout>
   This guide uses React, but it applies to any project using webpack. For some frameworks, we also have packages tailored to them:
@@ -139,7 +139,7 @@ If you use Git, update your .gitignore like so:
   <Tab id="-gitignore">
 
 ```sh
-# Serwist
+# {title}
 public/sw*
 public/swe-worker*
 ```

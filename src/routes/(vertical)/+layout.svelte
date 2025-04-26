@@ -1,24 +1,18 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import ChevronRight from "$components/icons/ChevronRight.svelte";
   import VerticalNavbar from "$components/layouts/VerticalNavbar.svelte";
   import { clsx } from "$lib/clsx";
-  import { BLOG_ENTRIES, BREAKPOINTS, DOCS_SIDEBAR_LINKS } from "$lib/constants";
-  import type { SidebarLink as SidebarLinkProps } from "$lib/types";
+  import { BREAKPOINTS } from "$lib/constants";
 
   import SidebarLink from "./SidebarLink.svelte";
 
-  const sidebarLinks = $derived(
-    $page.url.pathname.startsWith("/blog")
-      ? BLOG_ENTRIES.map(({ title, href }) => ({ title: title.content, href }) satisfies SidebarLinkProps)
-      : DOCS_SIDEBAR_LINKS
-  );
   const { children } = $props();
 
   let menuCheckbox = $state<HTMLInputElement | null>(null);
 
   $effect(() => {
-    $page.url.pathname;
+    page.url.pathname;
     const isMenuOpen = window.innerWidth >= BREAKPOINTS.md;
     if (menuCheckbox) {
       menuCheckbox.checked = isMenuOpen;
@@ -39,7 +33,7 @@
     )}
   >
     <VerticalNavbar />
-    {#if sidebarLinks && sidebarLinks.length > 0}
+    {#if page.data.sidebar}
       <input
         type="checkbox"
         role="button"
@@ -68,8 +62,15 @@
         aria-labelledby="sidebar-menu-toggle"
       >
         <ul>
-          {#each sidebarLinks as sidebarLink (sidebarLink.href)}
-            <SidebarLink {...sidebarLink} />
+          {#each page.data.sidebar as sidebarGroup (sidebarGroup)}
+            <li class="py-3">
+              <span class="block text-xl leading-5 font-medium tracking-tight mb-[10px]">{sidebarGroup.title}</span>
+              <ul>
+                {#each sidebarGroup.children as sidebarLink (sidebarLink.href)}
+                  <SidebarLink {...sidebarLink} />
+                {/each}
+              </ul>
+            </li>
           {/each}
         </ul>
       </aside>

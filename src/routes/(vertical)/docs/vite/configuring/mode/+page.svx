@@ -1,12 +1,11 @@
 ---
 layout: docs
+title: "mode"
 ---
 <script>
   import Tabs from "$components/Tabs.svelte";
   import Tab from "$components/Tab.svelte";
 </script>
-
-# mode
 
 ## First added
 
