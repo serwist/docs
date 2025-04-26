@@ -22,7 +22,7 @@ yarn-error.log*
 .turbo
 
 # production
-build/
+/build
 .svelte-kit/
 
 # vscode

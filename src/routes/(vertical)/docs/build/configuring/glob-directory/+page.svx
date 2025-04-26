@@ -1,12 +1,11 @@
 ---
 layout: docs
+title: "globDirectory"
 ---
 <script>
   import Tabs from "$components/Tabs.svelte";
   import Tab from "$components/Tab.svelte";
 </script>
-
-# globDirectory
 
 ## First added
 

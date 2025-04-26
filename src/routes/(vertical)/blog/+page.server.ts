@@ -1,7 +1,7 @@
-import { encodeOpenGraphImage } from "$lib/og";
+import { encodeOpenGraph } from "$lib/encodeOpenGraph";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = () => ({
   title: "Blog",
-  ogImage: encodeOpenGraphImage("Blog"),
+  ogImage: encodeOpenGraph("Blog"),
 });

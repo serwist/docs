@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { List } from "mdast";
 
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { BREAKPOINTS, GITHUB_REPO_URL } from "$lib/constants";
 
   import ChevronRight from "./icons/ChevronRight.svelte";
@@ -31,7 +31,7 @@
       Question? Give us feedback →
       <span class="sr-only">(opens in a new tab)</span>
     </a>
-    <a href={`${GITHUB_REPO_URL}/tree/main/docs/src/routes${$page.route.id}`} target="_blank" rel="noreferrer" class="text-toc">
+    <a href={`${GITHUB_REPO_URL}/tree/main/docs/src/routes${page.route.id}`} target="_blank" rel="noreferrer" class="text-toc">
       Edit this page →<span class="sr-only"> (opens in a new tab)</span>
     </a>
   </div>

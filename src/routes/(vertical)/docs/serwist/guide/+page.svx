@@ -1,8 +1,8 @@
 ---
 layout: docs
+title: "Diving deeper"
+footer: "serwist"
 ---
-# Diving deeper
-
 ## Introduction
 
 To help you with using Serwist, we provide the following blogs:

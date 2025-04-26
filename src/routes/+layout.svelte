@@ -46,12 +46,14 @@
 </script>
 
 <svelte:head>
-  <title>{title}</title>
+  {#if !page.data.noDefaultTitle}
+    <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta name="twitter:title" content={title} />
+  {/if}
   <link rel="canonical" href={new URL(page.url.pathname in REROUTE ? REROUTE[page.url.pathname] : page.url.pathname, CANONICAL_URL).href} />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <meta property="og:title" content={title} />
   <meta property="og:image" content={ogImage} />
-  <meta name="twitter:title" content={title} />
   <meta name="theme-color" content={isDark ? "#000000" : "#FFFFFF"} />
 </svelte:head>
 

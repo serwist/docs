@@ -1,13 +1,13 @@
 ---
 layout: docs
+title: "Getting started"
+footer: "@serwist/nuxt"
 ---
 <script>
   import Callout from "$components/Callout.svelte";
   import Tabs from "$components/Tabs.svelte";
   import Tab from "$components/Tab.svelte";
 </script>
-
-# Getting started
 
 ## Install
 
@@ -182,7 +182,7 @@ If you use Git, update your .gitignore like so:
   <Tab id="-gitignore">
 
 ```sh
-# Serwist
+# {title}
 public/sw*
 public/swe-worker*
 ```

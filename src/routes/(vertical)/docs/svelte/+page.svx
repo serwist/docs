@@ -1,8 +1,7 @@
 ---
 layout: docs
+title: "@serwist/svelte"
 ---
-# @serwist/svelte
-
 ## Introduction
 
 `@serwist/svelte` is a module that integrates Serwist into your Svelte application.

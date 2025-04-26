@@ -1,7 +1,7 @@
 ---
 layout: blog
 id: serwist-v9
-title: Serwist 9.0.0
+title: "Serwist 9.0.0"
 date: "2024-03-10"
 ---
 <script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import LogoGitHub from "$components/icons/LogoGitHub.svelte";
   import Image from "$components/Image.svelte";
   import logo from "$images/logo-200x50-transparent.png?enhanced";
@@ -17,12 +17,12 @@
     NAV_LINKS.map(({ link, ...rest }) => ({
       link,
       ...rest,
-      isActive: isLinkActive(link, $page.url.pathname),
+      isActive: isLinkActive(link, page.url.pathname),
     }))
   );
 
   $effect(() => {
-    $page.url.pathname;
+    page.url.pathname;
     if (mobileMenu) {
       mobileMenu.open = false;
     }

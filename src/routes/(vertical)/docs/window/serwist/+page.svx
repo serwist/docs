@@ -1,12 +1,12 @@
 ---
 layout: docs
+title: "Serwist"
+footer: "@serwist/window"
 ---
 <script>
   import Tabs from "$components/Tabs.svelte";
   import Tab from "$components/Tab.svelte";
 </script>
-
-# Serwist
 
 ## First added
 
