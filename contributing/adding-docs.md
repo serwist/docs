@@ -36,6 +36,31 @@
    git push -u origin $YOUR_BRANCH_NAME
    ```
 
+## Recommended .vscode/settings.json
+
+If you use Visual Studio Code, you may want to set .vscode/settings.json to this:
+
+```json
+{
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "html", "typescriptreact", "svelte"]
+}
+```
+
 ## Conventions
 
 - See [Conventions](./conventions.md).
