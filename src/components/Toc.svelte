@@ -19,14 +19,14 @@
   });
 </script>
 
-<details bind:this={tocDetails} class="details-anim flex h-full flex-col overflow-y-auto hyphens-auto text-lg md:text-base xl:text-sm">
+<details bind:this={tocDetails} class="details-anim flex h-full flex-col overflow-y-auto text-lg hyphens-auto md:text-base xl:text-sm">
   <summary class="mb-4 flex items-center">
     <span class="font-semibold tracking-tight text-black dark:text-white">On This Page</span>
     <ChevronRight class="details-chevron ml-2 transition-transform duration-100" width={18} height={18} />
   </summary>
   <div class="pointer-events-none w-full self-stretch overflow-y-auto" aria-hidden="true"></div>
   <TocRenderer {headings} />
-  <div class="mt-8 hidden flex-col items-start gap-2 border-t border-neutral-300 pb-8 pt-8 xl:flex dark:border-neutral-800">
+  <div class="mt-8 hidden flex-col items-start gap-2 border-t border-neutral-300 pt-8 pb-8 xl:flex dark:border-neutral-800">
     <a href={`${GITHUB_REPO_URL}/issues/new/choose`} target="_blank" rel="noreferrer" class="text-toc">
       Question? Give us feedback →
       <span class="sr-only">(opens in a new tab)</span>

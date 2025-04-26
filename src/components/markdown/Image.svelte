@@ -14,7 +14,7 @@
     {title}
     alt={title}
     height={512}
-    class="h-64 w-auto object-contain lg:h-[32rem] mx-auto"
+    class="mx-auto h-64 w-auto object-contain lg:h-[32rem]"
     loading="lazy"
     decoding="async"
   />

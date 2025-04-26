@@ -33,7 +33,7 @@
 <div class="dark:bg-neutral-925 my-3 flex w-full flex-col rounded-xl border border-neutral-300 bg-white shadow-md dark:border-neutral-800">
   <div class="relative w-full rounded-t-xl bg-white dark:bg-black">
     <div role="tablist" aria-orientation="horizontal" class="flex w-full overflow-auto rounded-t-xl">
-      {#each tabs as [tab, tabId]}
+      {#each tabs as [tab, tabId] (tabId)}
         {@const isActive = tabId === currentTab}
         <button
           id={`${id}-${tabId}-button`}

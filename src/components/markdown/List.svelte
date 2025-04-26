@@ -9,13 +9,13 @@
 
 {#if ordered}
   <ol class="list" start={start || null}>
-    {#each children as item}
+    {#each children as item (item)}
       <ListItem {...item} />
     {/each}
   </ol>
 {:else}
   <ul class="list">
-    {#each children as item}
+    {#each children as item (item)}
       <ListItem {...item} />
     {/each}
   </ul>

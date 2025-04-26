@@ -6,7 +6,7 @@
   <article class="prose flex w-full max-w-6xl flex-col p-6 md:px-12 md:pb-12 xl:pt-12">
     <h1>Blog</h1>
     <div class="my-3 grid grid-flow-row gap-4 lg:grid-cols-3">
-      {#each BLOG_ENTRIES as { title, description, date, href, keyPoints }}
+      {#each BLOG_ENTRIES as { title, description, date, href, keyPoints } (href)}
         <article
           class="not-prose dark:bg-neutral-925 flex min-w-0 flex-col gap-3 rounded-[.875rem] border border-neutral-300 bg-white p-2 shadow-md dark:border-neutral-800"
         >
@@ -16,7 +16,7 @@
             <p>{description}</p>
           </div>
           <ul class="list pr-2">
-            {#each keyPoints as { title, id }}
+            {#each keyPoints as { title, id } (`${href}-${id}`)}
               <li><a href={`${href}#${id}`} class="link">{title}</a></li>
             {/each}
           </ul>
