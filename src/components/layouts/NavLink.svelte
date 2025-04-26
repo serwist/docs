@@ -26,9 +26,9 @@
   <a
     {href}
     class={clsx(
-      "h-full w-full gap-2 break-words px-3 py-2 font-medium text-black dark:text-white",
+      "h-full w-full gap-2 px-3 py-2 font-medium break-words text-black dark:text-white",
       textCenter && "text-center",
-      wideText ? "shrink-0 text-base uppercase tracking-widest" : "text-base md:text-sm"
+      wideText ? "shrink-0 text-base tracking-widest uppercase" : "text-base md:text-sm"
     )}
     aria-current={isActive}
     {...props}

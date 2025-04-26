@@ -1,3 +1,4 @@
+import type { RootContentMap } from "mdast";
 import Heading from "./Heading.svelte";
 import Paragraph from "./Paragraph.svelte";
 import Text from "./Text.svelte";
@@ -11,12 +12,10 @@ import ListItem from "./ListItem.svelte";
 import Html from "./Html.svelte";
 import Blockquote from "./Blockquote.svelte";
 import Code from "./Code.svelte";
-import type { RootContentMap } from "mdast";
 import Br from "./Br.svelte";
 import InlineCode from "./InlineCode.svelte";
 import { TocLink, TocParagraph } from "./toc";
-
-export type RendererFor = "content" | "toc";
+import type { RendererFor, RendererProps } from "./types";
 
 export const getRenderer = (type: keyof RootContentMap, renderFor: RendererFor = "content") => {
   const isForToc = renderFor === "toc";
@@ -55,3 +54,5 @@ export const getRenderer = (type: keyof RootContentMap, renderFor: RendererFor =
       return null;
   }
 };
+
+export type { RendererFor, RendererProps };

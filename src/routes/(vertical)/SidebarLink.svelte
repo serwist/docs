@@ -44,7 +44,7 @@
             "before:bg-neutral-250 before:w-px before:content-[''] ltr:before:left-0 rtl:before:right-0 dark:before:bg-neutral-800"
           )}
         >
-          {#each children as child}
+          {#each children as child (child.href)}
             <SidebarLink {...child} />
           {/each}
         </ul>

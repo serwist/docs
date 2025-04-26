@@ -37,11 +37,11 @@
 </script>
 
 {#if headingLevel >= 1 && headingLevel <= 6}
-  <svelte:element this={`h${headingLevel}`} class={clsx("mb-4 mt-6", headingClass)}>
+  <svelte:element this={`h${headingLevel}`} class={clsx("mt-6 mb-4", headingClass)}>
     <Parser tokens={children} />
   </svelte:element>
 {:else}
-  <p class={clsx("mb-4 mt-6", headingClass)}>
+  <p class={clsx("mt-6 mb-4", headingClass)}>
     <Parser tokens={children} />
   </p>
 {/if}

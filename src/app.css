@@ -63,7 +63,7 @@
     @apply mb-6;
   }
   & h2:not(:where([class~="not-prose"] *)) {
-    @apply mb-3 mt-6;
+    @apply mt-6 mb-3;
   }
   & :where(h3, h4, p, video):not(:where([class~="not-prose"] *)) {
     @apply my-3;
@@ -123,7 +123,7 @@
   & {
     list-style-position: inside;
     list-style-type: disc;
-    @apply break-words pl-4 marker:text-black dark:marker:text-white;
+    @apply pl-4 break-words marker:text-black dark:marker:text-white;
   }
   & > li {
     @apply mb-2;
@@ -185,19 +185,19 @@
     @apply text-balance break-words;
   }
   h1 {
-    @apply text-4xl font-semibold leading-10 tracking-tight;
+    @apply text-4xl leading-10 font-semibold tracking-tight;
   }
   h2 {
-    @apply text-3xl font-semibold leading-10 tracking-tight;
+    @apply text-3xl leading-10 font-semibold tracking-tight;
   }
   h3 {
-    @apply text-2xl font-semibold leading-7 tracking-tight;
+    @apply text-2xl leading-7 font-semibold tracking-tight;
   }
   h4 {
-    @apply text-xl font-medium leading-5 tracking-tight;
+    @apply text-xl leading-5 font-medium tracking-tight;
   }
   details > summary {
-    @apply cursor-pointer select-none list-none;
+    @apply cursor-pointer list-none select-none;
   }
   details > summary::-webkit-details-marker {
     @apply hidden;

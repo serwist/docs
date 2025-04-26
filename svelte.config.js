@@ -11,10 +11,9 @@ import { remarkToc } from "./config-utils/remark-toc.js";
 import { rehypeSlug } from "./config-utils/rehype-slug.js";
 
 // const dev = process.env.NODE_ENV !== "production";
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const packageJson = JSON.parse(readFileSync(path.join(__dirname, "../packages/core/package.json"), "utf-8"));
+const packageJson = JSON.parse(readFileSync(fileURLToPath(import.meta.resolve("serwist/package.json")), "utf-8"));
 
 /**
  * @param {string} str

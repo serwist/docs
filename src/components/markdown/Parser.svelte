@@ -19,7 +19,7 @@
 {/snippet}
 
 {#if Array.isArray(tokens)}
-  {#each tokens as token}
+  {#each tokens as token (token)}
     {@render render(token)}
   {/each}
 {:else}
