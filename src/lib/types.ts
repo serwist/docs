@@ -17,7 +17,6 @@ export interface TwoslashProps {
 export interface SidebarLink {
   title: string;
   href: string;
-  children?: SidebarLink[];
 }
 
 export interface SidebarGroup {
