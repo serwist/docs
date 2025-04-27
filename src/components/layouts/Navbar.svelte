@@ -31,7 +31,7 @@
 
 <nav
   class={clsx(
-    "transition-colors-opacity sticky top-0 z-50 h-fit max-h-dvh border-b duration-100",
+    "transition-colors-opacity sticky top-0 z-50 h-(--navbar) border-b duration-100",
     "border-neutral-300 bg-white dark:border-neutral-800 dark:bg-black"
   )}
 >

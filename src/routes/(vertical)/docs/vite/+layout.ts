@@ -20,6 +20,15 @@ export const load: LayoutLoad = () => ({
       ],
     },
     {
+      title: "Recipes",
+      children: [
+        {
+          title: "SvelteKit",
+          href: "/docs/vite/recipes/svelte",
+        },
+      ],
+    },
+    {
       title: "Configuring",
       children: [
         { title: "additionalPrecacheEntries", href: "/docs/vite/configuring/additional-precache-entries" },
@@ -47,15 +56,6 @@ export const load: LayoutLoad = () => ({
         { title: "swUrl", href: "/docs/vite/configuring/sw-url" },
         { title: "templatedURLs", href: "/docs/vite/configuring/templated-urls" },
         { title: "type", href: "/docs/vite/configuring/type" },
-      ],
-    },
-    {
-      title: "Recipes",
-      children: [
-        {
-          title: "SvelteKit",
-          href: "/docs/vite/recipes/svelte",
-        },
       ],
     },
   ],

@@ -7,6 +7,7 @@
 
   import { dev } from "$app/environment";
   import { page } from "$app/state";
+  import GlobalSvgDefs from "$components/icons/index.svelte";
   import Twoslash from "$components/Twoslash.svelte";
   import { CANONICAL_URL, REROUTE } from "$lib/constants";
   import { isColorScheme } from "$lib/isColorScheme";
@@ -57,5 +58,6 @@
   <meta name="theme-color" content={isDark ? "#000000" : "#FFFFFF"} />
 </svelte:head>
 
+<GlobalSvgDefs />
 <a class="absolute -top-full z-100 text-black underline focus:top-0 dark:text-white" href="#main-content">Skip to main content</a>
 {@render children()}

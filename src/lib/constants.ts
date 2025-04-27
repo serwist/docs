@@ -1,4 +1,11 @@
+import type { Component } from "svelte";
 import type { BlogEntry } from "./types";
+import type { SVGAttributes } from "svelte/elements";
+import LogoNextjs from "$components/icons/LogoNextjs.svelte";
+import LogoNuxt from "$components/icons/LogoNuxt.svelte";
+import LogoVite from "$components/icons/LogoVite.svelte";
+import LogoWebpack from "$components/icons/LogoWebpack.svelte";
+import LogoSerwist from "$components/icons/LogoSerwist.svelte";
 
 export const COLOR_SCHEMES = ["dark", "light"] as const;
 
@@ -125,3 +132,14 @@ export const BLOG_ENTRIES = [
     ],
   },
 ] satisfies BlogEntry[];
+
+export const MAP_PATH_TO_PACKAGE: Record<string, [string, Component<SVGAttributes<SVGElement>>]> = {
+  serwist: ["serwist", LogoSerwist],
+  build: ["@serwist/build", LogoSerwist],
+  cli: ["@serwist/cli", LogoSerwist],
+  next: ["@serwist/next", LogoNextjs],
+  nuxt: ["@serwist/nuxt", LogoNuxt],
+  vite: ["vite-plugin-serwist", LogoVite],
+  "webpack-plugin": ["@serwist/webpack-plugin", LogoWebpack],
+  window: ["@serwist/window", LogoSerwist],
+};

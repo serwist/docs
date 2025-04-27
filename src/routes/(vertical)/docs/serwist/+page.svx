@@ -13,10 +13,12 @@ title: "serwist"
 * [Preloading navigations](/docs/serwist/guide/navigation-preloading)
 * [Precaching assets](/docs/serwist/guide/precaching)
 * [Setting cacheability criteria](/docs/serwist/guide/setting-cacheability-criteria)
+* [Runtime caching](/docs/serwist/runtime-caching)
+* [Routing](/docs/serwist/runtime-caching/routing)
+* [Using caching strategies](/docs/serwist/runtime-caching/caching-strategies)
+* [Using strategy plugins](/docs/serwist/runtime-caching/plugins)
 
 ## The Serwist API
-
-Here lists those which `serwist` offers:
 
 * Core functions  
    * [BackgroundSyncQueue](/docs/serwist/core/background-sync-queue)  
@@ -32,6 +34,11 @@ Here lists those which `serwist` offers:
    * [responsesAreSame](/docs/serwist/core/responses-are-same)  
    * [Serwist](/docs/serwist/core/serwist)  
    * [StorableRequest](/docs/serwist/core/storable-request)
+* Routing  
+   * [NavigationRoute](/docs/serwist/runtime-caching/routing/navigation-route)  
+   * [PrecacheRoute](/docs/serwist/runtime-caching/routing/precache-route)  
+   * [RegExpRoute](/docs/serwist/runtime-caching/routing/reg-exp-route)  
+   * [Route](/docs/serwist/runtime-caching/routing/route)
 * Caching strategies  
    * [CacheFirst](/docs/serwist/runtime-caching/caching-strategies/cache-first)  
    * [CacheOnly](/docs/serwist/runtime-caching/caching-strategies/cache-only)  
@@ -40,12 +47,7 @@ Here lists those which `serwist` offers:
    * [StaleWhileRevalidate](/docs/serwist/runtime-caching/caching-strategies/stale-while-revalidate)  
    * [Strategy](/docs/serwist/runtime-caching/caching-strategies/strategy)  
    * [StrategyHandler](/docs/serwist/runtime-caching/caching-strategies/strategy-handler)
-* Routing  
-   * [NavigationRoute](/docs/serwist/runtime-caching/routing/navigation-route)  
-   * [PrecacheRoute](/docs/serwist/runtime-caching/routing/precache-route)  
-   * [RegExpRoute](/docs/serwist/runtime-caching/routing/reg-exp-route)  
-   * [Route](/docs/serwist/runtime-caching/routing/route)
-* Plugins for caching strategies  
+* Strategy plugins  
    * [BackgroundSyncPlugin](/docs/serwist/runtime-caching/plugins/background-sync-plugin)  
    * [BroadcastUpdatePlugin](/docs/serwist/runtime-caching/plugins/broadcast-update-plugin)  
    * [CacheableResponsePlugin](/docs/serwist/runtime-caching/plugins/cacheable-response-plugin)  

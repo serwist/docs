@@ -5,8 +5,14 @@
 
 @variant dark (&:is([data-theme='dark'] *));
 
+:root {
+  --navbar: 4.0625rem;
+}
+
 @theme {
   --font-sans: "Geist", Arial, sans-serif;
+
+  --animate-fly: fly 100ms ease-out;
 
   /** These values are duplicated at src/lib/constants.ts#BREAKPOINTS. */
   --breakpoint-md: 768px;
@@ -34,6 +40,13 @@
   --color-neutral-250: #dddddd;
   --color-neutral-925: #0d0d0d;
   --color-neutral-1000: #111111;
+
+  @keyframes fly {
+    from {
+      opacity: 0;
+      transform: translateY(var(--fly-translate, -1rem));
+    }
+  }
 }
 
 @layer base {
@@ -47,8 +60,8 @@
 }
 
 @utility details-anim {
-  &details[open] > *:not(summary) {
-    animation: details-show 100ms ease-out;
+  &[open] > *:not(summary) {
+    @apply animate-fly;
   }
 }
 
@@ -214,15 +227,6 @@
 
   #nav-mobile-menu[open] > summary {
     @apply [&>:nth-child(1)]:translate-y-[0.7rem] [&>:nth-child(1)]:rotate-45 [&>:nth-child(2)]:opacity-0 [&>:nth-child(3)]:-translate-y-[0.7rem] [&>:nth-child(3)]:-rotate-45;
-  }
-}
-
-@layer utilities {
-  @keyframes details-show {
-    from {
-      opacity: 0;
-      transform: var(--details-translate, translateY(-1rem));
-    }
   }
 }
 

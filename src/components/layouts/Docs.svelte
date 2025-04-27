@@ -43,7 +43,7 @@
 </svelte:head>
 <main id="main-content" class="flex w-full flex-col xl:flex-row xl:justify-between">
   <nav
-    class="top-0 shrink-0 px-6 pt-6 md:px-12 xl:sticky xl:order-last xl:max-h-dvh xl:w-[350px] xl:px-4 print:hidden"
+    class="shrink-0 px-6 pt-6 *:w-[350px] md:px-12 xl:sticky xl:top-(--navbar) xl:order-last xl:max-h-[calc(100dvh-var(--navbar))] xl:w-[clamp(350px,25vw,700px)] xl:px-4 print:hidden"
     aria-label="Table of contents"
   >
     <Toc {headings} />

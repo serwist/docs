@@ -1,12 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { PluginOptions, SerwistViteContext } from "vite-plugin-serwist";
-import { createContext, generateServiceWorker, main as mainPlugin } from "vite-plugin-serwist";
 import { enhancedImages } from "@sveltejs/enhanced-img";
 import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";
 import type { Plugin } from "vite";
 import { defineConfig } from "vite";
+import type { PluginOptions, SerwistViteContext } from "vite-plugin-serwist";
+import { createContext, generateServiceWorker, main as mainPlugin } from "vite-plugin-serwist";
 import config from "./svelte.config";
 
 // Source: https://github.com/sveltejs/kit/blob/6419d3eaa7bf1b0a756b28f06a73f71fe042de0a/packages/kit/src/utils/filesystem.js

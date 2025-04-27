@@ -182,7 +182,7 @@ If you use Git, update your .gitignore like so:
   <Tab id="-gitignore">
 
 ```sh
-# {title}
+# Serwist
 public/sw*
 public/swe-worker*
 ```

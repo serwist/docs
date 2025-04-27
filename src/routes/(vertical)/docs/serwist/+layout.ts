@@ -14,13 +14,49 @@ export const load: LayoutLoad = () => ({
           href: "/docs/serwist/core",
         },
         {
+          title: "Background synchronizing",
+          href: "/docs/serwist/guide/background-syncing",
+        },
+        {
+          title: "Broadcasting cache updates",
+          href: "/docs/serwist/guide/broadcasting-updates",
+        },
+        {
+          title: "Expiring outdated responses",
+          href: "/docs/serwist/guide/expiring-outdated-responses",
+        },
+        {
+          title: "Preloading navigations",
+          href: "/docs/serwist/guide/navigation-preloading",
+        },
+        {
+          title: "Precaching assets",
+          href: "/docs/serwist/guide/precaching",
+        },
+        {
+          title: "Setting cacheability criteria",
+          href: "/docs/serwist/guide/setting-cacheability-criteria",
+        },
+        {
           title: "Runtime caching",
           href: "/docs/serwist/runtime-caching",
+        },
+        {
+          title: "Routing",
+          href: "/docs/serwist/runtime-caching/routing",
+        },
+        {
+          title: "Using caching strategies",
+          href: "/docs/serwist/runtime-caching/caching-strategies",
+        },
+        {
+          title: "Using strategy plugins",
+          href: "/docs/serwist/runtime-caching/plugins",
         },
       ],
     },
     {
-      title: "The Serwist API",
+      title: "Core functions",
       children: [
         {
           title: "BackgroundSyncQueue",
@@ -68,12 +104,29 @@ export const load: LayoutLoad = () => ({
       ],
     },
     {
-      title: "Caching strategies",
+      title: "Routing",
       children: [
         {
-          title: "Overview",
-          href: "/docs/serwist/runtime-caching/caching-strategies",
+          title: "NavigationRoute",
+          href: "/docs/serwist/runtime-caching/routing/navigation-route",
         },
+        {
+          title: "PrecacheRoute",
+          href: "/docs/serwist/runtime-caching/routing/precache-route",
+        },
+        {
+          title: "RegExpRoute",
+          href: "/docs/serwist/runtime-caching/routing/reg-exp-route",
+        },
+        {
+          title: "Route",
+          href: "/docs/serwist/runtime-caching/routing/route",
+        },
+      ],
+    },
+    {
+      title: "Caching strategies",
+      children: [
         {
           title: "CacheFirst",
           href: "/docs/serwist/runtime-caching/caching-strategies/cache-first",
@@ -105,12 +158,8 @@ export const load: LayoutLoad = () => ({
       ],
     },
     {
-      title: "Using Strategy plugins",
+      title: "Strategy plugins",
       children: [
-        {
-          title: "Overview",
-          href: "/docs/serwist/runtime-caching/plugins",
-        },
         {
           title: "BackgroundSyncPlugin",
           href: "/docs/serwist/runtime-caching/plugins/background-sync-plugin",
@@ -124,61 +173,6 @@ export const load: LayoutLoad = () => ({
         {
           title: "PrecacheFallbackPlugin",
           href: "/docs/serwist/runtime-caching/plugins/precache-fallback-plugin",
-        },
-      ],
-    },
-    {
-      title: "Routing",
-      children: [
-        {
-          title: "Overview",
-          href: "/docs/serwist/runtime-caching/routing",
-        },
-        {
-          title: "NavigationRoute",
-          href: "/docs/serwist/runtime-caching/routing/navigation-route",
-        },
-        {
-          title: "PrecacheRoute",
-          href: "/docs/serwist/runtime-caching/routing/precache-route",
-        },
-        {
-          title: "RegExpRoute",
-          href: "/docs/serwist/runtime-caching/routing/reg-exp-route",
-        },
-        {
-          title: "Route",
-          href: "/docs/serwist/runtime-caching/routing/route",
-        },
-      ],
-    },
-    {
-      title: "Diving deeper",
-      // href: "/docs/serwist/guide",
-      children: [
-        {
-          title: "Background synchronizing",
-          href: "/docs/serwist/guide/background-syncing",
-        },
-        {
-          title: "Broadcasting cache updates",
-          href: "/docs/serwist/guide/broadcasting-updates",
-        },
-        {
-          title: "Expiring outdated responses",
-          href: "/docs/serwist/guide/expiring-outdated-responses",
-        },
-        {
-          title: "Preloading navigations",
-          href: "/docs/serwist/guide/navigation-preloading",
-        },
-        {
-          title: "Precaching assets",
-          href: "/docs/serwist/guide/precaching",
-        },
-        {
-          title: "Setting cacheability criteria",
-          href: "/docs/serwist/guide/setting-cacheability-criteria",
         },
       ],
     },
