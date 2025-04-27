@@ -14,12 +14,12 @@
 <div
   class={clsx(
     "flex w-full flex-col gap-8 self-stretch bg-white px-8 py-6 text-black md:gap-24 md:p-24 dark:bg-black dark:text-white",
-    "[&>div]:max-w-(--breakpoint-lg) [&>div]:flex [&>div]:w-full [&>div]:flex-col [&>div]:gap-6 md:[&>div]:self-center"
+    "[&>div]:flex [&>div]:w-full [&>div]:max-w-(--breakpoint-lg) [&>div]:flex-col [&>div]:gap-6 md:[&>div]:self-center"
   )}
 >
   <div class="py-24 md:py-0">
     <h1 class="text-6xl leading-none font-semibold tracking-tight">Serwist.</h1>
-    <h2 class="text-comment leading-none text-4xl font-semibold tracking-tight">A Swiss Army knife for service workers.</h2>
+    <h2 class="text-comment text-4xl leading-none font-semibold tracking-tight">A Swiss Army knife for service workers.</h2>
     <Code showIcon>npm install -D serwist @serwist/build</Code>
     <!-- <div class="grid grid-cols-4 [&>a]:flex [&>a]:py-6 [&>a]:justify-center">
       <a href="/docs/next">

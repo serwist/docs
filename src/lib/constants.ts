@@ -415,7 +415,7 @@ export const DOCS_SIDEBAR_LINKS = [
     ],
   },
   {
-    title: "vite-plugin-serwist",
+    title: "@serwist/vite",
     href: "/docs/vite",
     children: [
       {

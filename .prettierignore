@@ -1,0 +1,7 @@
+*.*
+!*.svelte
+!*.css
+!*.md
+/.svelte-kit
+/build
+node_modules/

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import ChevronRight from "$components/icons/ChevronRight.svelte";
   import VerticalNavbar from "$components/layouts/VerticalNavbar.svelte";
   import { clsx } from "$lib/clsx";
@@ -9,7 +9,7 @@
   import SidebarLink from "./SidebarLink.svelte";
 
   const sidebarLinks = $derived(
-    $page.url.pathname.startsWith("/blog")
+    page.url.pathname.startsWith("/blog")
       ? BLOG_ENTRIES.map(({ title, href }) => ({ title: title.content, href }) satisfies SidebarLinkProps)
       : DOCS_SIDEBAR_LINKS
   );
@@ -18,7 +18,7 @@
   let menuCheckbox = $state<HTMLInputElement | null>(null);
 
   $effect(() => {
-    $page.url.pathname;
+    page.url.pathname;
     const isMenuOpen = window.innerWidth >= BREAKPOINTS.md;
     if (menuCheckbox) {
       menuCheckbox.checked = isMenuOpen;
@@ -53,7 +53,7 @@
         id="sidebar-menu-toglab"
         for="sidebar-menu-toggle"
         class={clsx(
-          "z-20 flex h-fit w-full cursor-pointer select-none flex-row items-center justify-start gap-2 px-3 py-2 text-base font-medium",
+          "z-20 flex h-fit w-full cursor-pointer flex-row items-center justify-start gap-2 px-3 py-2 text-base font-medium select-none",
           "text-black duration-100 md:mt-[5px] md:text-sm dark:text-white [&>svg]:peer-checked:rotate-90",
           "peer-focus-visible:ring-2 peer-focus-visible:ring-white peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-gray-800"
         )}

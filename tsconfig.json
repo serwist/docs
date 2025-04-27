@@ -10,7 +10,7 @@
     "sourceMap": true,
     "strict": true,
     "moduleResolution": "bundler",
-    "types": ["vite-plugin-serwist/typings"]
+    "types": ["@serwist/vite/typings"]
   },
   // Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
   //

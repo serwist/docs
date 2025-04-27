@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { PluginOptions, SerwistViteContext } from "vite-plugin-serwist";
-import { createContext, generateServiceWorker, main as mainPlugin } from "vite-plugin-serwist";
+import type { PluginOptions, SerwistViteApi, SerwistViteContext } from "@serwist/vite";
+import { createApi, createContext, main as mainPlugin } from "@serwist/vite";
 import { enhancedImages } from "@sveltejs/enhanced-img";
 import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";
@@ -41,7 +41,7 @@ const resolveEntry = (entry: string): string | null => {
   return null;
 };
 
-// We do not rely on `vite-plugin-serwist`'s built-in `buildPlugin` because
+// We do not rely on `@serwist/vite`'s built-in `buildPlugin` because
 // it runs during the client build, but SvelteKit builds the service worker
 // during the server build, which takes place after the client one.
 /**
@@ -50,17 +50,17 @@ const resolveEntry = (entry: string): string | null => {
  * @param api
  * @returns
  */
-const buildPlugin = (ctx: SerwistViteContext) => {
+const buildPlugin = (ctx: SerwistViteContext, api: SerwistViteApi) => {
   return <Plugin>{
-    name: "vite-plugin-serwist:build",
+    name: "@serwist/vite:build",
     apply: "build",
     enforce: "pre",
     closeBundle: {
       sequential: true,
       order: ctx.userOptions?.integration?.closeBundleOrder,
       async handler() {
-        if (!ctx.options.disable && ctx.viteConfig.build.ssr) {
-          await generateServiceWorker(ctx);
+        if (api && !api.disabled && ctx.viteConfig.build.ssr) {
+          await api.generateSW();
         }
       },
     },
@@ -70,7 +70,7 @@ const buildPlugin = (ctx: SerwistViteContext) => {
   };
 };
 
-// Here is the main logic: it stores your Serwist configuration, creates `vite-plugin-serwist`'s
+// Here is the main logic: it stores your Serwist configuration, creates `@serwist/vite`'s
 // context and API, and constructs the necessary Vite plugins.
 const serwist = (): Plugin[] => {
   let buildAssetsDir = config.kit?.appDir ?? "_app/";
@@ -98,7 +98,7 @@ const serwist = (): Plugin[] => {
     injectionPoint: "self.__SW_MANIFEST",
     integration: {
       closeBundleOrder: "pre",
-      // These options depend on `viteConfig`, so we have to use `vite-plugin-serwist`'s configuration hook.
+      // These options depend on `viteConfig`, so we have to use `@serwist/vite`'s configuration hook.
       configureOptions(viteConfig, options) {
         // Since we don't use `devPlugin`, the service worker is not bundled in development.
         const clientOutDir = path.resolve(viteConfig.root, viteConfig.build.outDir, "../client");
@@ -162,7 +162,8 @@ const serwist = (): Plugin[] => {
     dontCacheBustURLsMatching: new RegExp(`^client/${buildAssetsDir}immutable/`),
   };
   const ctx = createContext(options, undefined);
-  return [mainPlugin(ctx), buildPlugin(ctx)];
+  const api = createApi(ctx);
+  return [mainPlugin(ctx, api), buildPlugin(ctx, api)];
 };
 
 export default defineConfig({

@@ -58,7 +58,7 @@
 <div
   class={clsx(
     "flex h-fit max-h-full w-full flex-row items-center gap-2 rounded-md px-3 py-2 text-base font-medium",
-    "my-3 border border-neutral-300 text-black shadow-md md:text-sm dark:border-neutral-800 dark:text-white *:min-w-[auto]",
+    "my-3 border border-neutral-300 text-black shadow-md *:min-w-[auto] md:text-sm dark:border-neutral-800 dark:text-white",
     barColor
   )}
 >

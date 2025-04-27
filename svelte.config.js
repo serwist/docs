@@ -4,17 +4,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import adapter from "@sveltejs/adapter-static";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
-// @ts-expect-error weird typings
 import { escapeSvelte, mdsvex } from "mdsvex";
 import { highlighter, twoslash } from "./config-utils/shiki.js";
 import { remarkToc } from "./config-utils/remark-toc.js";
 import { rehypeSlug } from "./config-utils/rehype-slug.js";
 
 // const dev = process.env.NODE_ENV !== "production";
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const packageJson = JSON.parse(readFileSync(path.join(__dirname, "../packages/core/package.json"), "utf-8"));
+const packageJson = JSON.parse(readFileSync(fileURLToPath(import.meta.resolve("serwist/package.json")), "utf-8"));
 
 /**
  * @param {string} str
@@ -51,7 +49,6 @@ const config = {
         blog: path.join(__dirname, "./src/components/layouts/Blog.svelte"),
       },
       highlight: {
-        // @ts-expect-error weird typings
         async highlighter(code, lang, meta) {
           const metaObject = meta ? parseMetaString(meta) : {};
           return escapeSvelte(

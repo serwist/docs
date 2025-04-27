@@ -12,7 +12,7 @@
 
 <span class="my-3 flex w-fit items-center gap-2 font-mono *:min-w-[auto]">
   {#if showIcon}
-    <span class="select-none text-black dark:text-white" aria-hidden="true">{">_"}</span>
+    <span class="text-black select-none dark:text-white" aria-hidden="true">&gt;_</span>
   {/if}
   <code class="text-comment flex gap-2 break-all" {...props}>
     {#if children}
