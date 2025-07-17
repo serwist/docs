@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { PluginOptions, SerwistViteApi, SerwistViteContext } from "@serwist/vite";
 import { createApi, createContext, main as mainPlugin } from "@serwist/vite";
+import type { PluginOptions, SerwistViteApi, SerwistViteContext } from "@serwist/vite";
 import { enhancedImages } from "@sveltejs/enhanced-img";
 import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";

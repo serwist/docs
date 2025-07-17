@@ -33,7 +33,7 @@
   <div class="relative mx-auto flex flex-row justify-between overflow-x-clip md:flex-col">
     <div class="flex items-center gap-2 md:block md:items-start md:py-2">
       <a href="/" aria-label="Go to home">
-        <Image src={logo} alt="Serwist" class="h-auto max-w-[100px] min-w-[100px] invert dark:invert-0" />
+        <Image src={logo} alt="Serwist" class="h-auto min-w-[100px] max-w-[100px] invert dark:invert-0" />
       </a>
     </div>
     <div class="flex flex-col gap-[5px] md:flex-col-reverse">
@@ -79,7 +79,7 @@
           </div>
         </details>
         <a class="nav-button" href={GITHUB_REPO_URL} target="_blank" rel="noreferrer">
-          <LogoGitHub width={24} height={24} class="max-h-6 min-h-6 max-w-6 min-w-6" />
+          <LogoGitHub width={24} height={24} class="max-h-6 min-h-6 min-w-6 max-w-6" />
           <span class="sr-only">Our GitHub repo (opens in a new tab)</span>
         </a>
         <NavToggleScheme />
