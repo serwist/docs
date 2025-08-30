@@ -91,7 +91,7 @@ Behind the scenes, the constructor calls the following:
 
 ```typescript twoslash
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { addEventListeners, createSerwist, RuntimeCache } from "serwist";
 // This import depends on your framework. For example, if you use Next.js, it should
 // be @serwist/next/worker rather than vite-plugin-serwist/worker.
 import { defaultCache } from "vite-plugin-serwist/worker";
@@ -107,16 +107,18 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 
-const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
+const serwist = createSerwist({
+  precache: {
+    entries: self.__SW_MANIFEST,
+  },
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
   disableDevLogs: true,
-  runtimeCaching: defaultCache,
+  extensions: [new RuntimeCache(defaultCache)],
 });
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>

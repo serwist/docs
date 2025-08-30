@@ -27,15 +27,15 @@ A `Route` consists of a pair of callback functions, `match` and `handler`. The `
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import { CacheFirst, Route, Serwist } from "serwist";
+import { addEventListeners, CacheFirst, createSerwist, registerRoute, Route } from "serwist";
 
-const serwist = new Serwist();
+const serwist = createSerwist();
 
-serwist.registerRoute(new Route(({ request, sameOrigin }) => {
+registerRoute(serwist, new Route(({ request, sameOrigin }) => {
   return sameOrigin && request.destination === "image";
 }, new CacheFirst()));
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>

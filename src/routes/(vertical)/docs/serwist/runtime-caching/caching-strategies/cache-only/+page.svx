@@ -32,14 +32,16 @@ If there is no cache match, this will throw a `SerwistError` exception.
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import { CacheOnly, Serwist } from "serwist";
+import { CacheOnly, createSerwist, RuntimeCache } from "serwist";
 
-const serwist = new Serwist({
-  runtimeCaching: [
-    {
-      matcher: ({ url }) => url.pathname.startsWith("/app/v2/"),
-      handler: new CacheOnly(),
-    },
+const serwist = createSerwist({
+  extensions: [
+    new RuntimeCache([
+      {
+        matcher: ({ url }) => url.pathname.startsWith("/app/v2/"),
+        handler: new CacheOnly(),
+      },
+    ]),
   ],
 });
 ```

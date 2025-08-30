@@ -188,7 +188,7 @@ Basic service worker template to get Serwist up and running:
 ```typescript twoslash
 import { defaultCache } from "@serwist/next/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { addEventListeners, createSerwist, RuntimeCache } from "serwist";
 
 // This declares the value of `injectionPoint` to TypeScript.
 // `injectionPoint` is the string that will be replaced by the
@@ -202,15 +202,17 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 
-const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
+const serwist = createSerwist({
+  precache: {
+    entries: self.__SW_MANIFEST,
+  },
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
+  extensions: [new RuntimeCache(defaultCache)],
 });
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>

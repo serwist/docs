@@ -34,14 +34,16 @@ If the network request fails, and there is no cache match, this will throw a `Se
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import { StaleWhileRevalidate, Serwist } from "serwist";
+import { createSerwist, RuntimeCache, StaleWhileRevalidate } from "serwist";
 
-const serwist = new Serwist({
-  runtimeCaching: [
-    {
-      matcher: ({ url }) => url.pathname.startsWith("/images/avatars/"),
-      handler: new StaleWhileRevalidate(),
-    },
+const serwist = createSerwist({
+  extensions: [
+    new RuntimeCache([
+      {
+        matcher: ({ url }) => url.pathname.startsWith("/images/avatars/"),
+        handler: new StaleWhileRevalidate(),
+      },
+    ]),
   ],
 });
 ```

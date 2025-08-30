@@ -75,13 +75,17 @@ To broadcast updates, you just need to add a `BroadcastUpdatePlugin` instance to
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
-declare const serwist: Serwist;
+/**
+ * Initialized using `createSerwist`.
+ */
+declare const serwist: SerwistState;
 // ---cut-before---
-import { BroadcastUpdatePlugin, StaleWhileRevalidate } from "serwist";
+import { BroadcastUpdatePlugin, StaleWhileRevalidate, registerCapture } from "serwist";
 
-serwist.registerCapture(
+registerCapture(
+  serwist,
   ({ url }) => url.pathname.startsWith("/api/"),
   new StaleWhileRevalidate({
     plugins: [new BroadcastUpdatePlugin()],
@@ -132,13 +136,17 @@ You can customize the list of headers to check by setting the headersToCheck pro
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
-declare const serwist: Serwist;
+/**
+ * Initialized using `createSerwist`.
+ */
+declare const serwist: SerwistState;
 // ---cut-before---
-import { BroadcastUpdatePlugin, BROADCAST_UPDATE_DEFAULT_HEADERS, StaleWhileRevalidate } from "serwist";
+import { BroadcastUpdatePlugin, BROADCAST_UPDATE_DEFAULT_HEADERS, registerCapture, StaleWhileRevalidate } from "serwist";
 
-serwist.registerCapture(
+registerCapture(
+  serwist,
   ({ url }) => url.pathname.startsWith("/api/"),
   new StaleWhileRevalidate({
     plugins: [

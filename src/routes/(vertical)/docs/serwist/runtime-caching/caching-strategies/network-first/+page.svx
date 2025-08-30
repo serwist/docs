@@ -33,14 +33,16 @@ If the network request fails, and there is no cache match, this will throw a `Se
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import { NetworkFirst, Serwist } from "serwist";
+import { createSerwist, NetworkFirst, RuntimeCache } from "serwist";
 
-const serwist = new Serwist({
-  runtimeCaching: [
-    {
-      matcher: ({ url }) => url.pathname.startsWith("/social-timeline/"),
-      handler: new NetworkFirst(),
-    },
+const serwist = createSerwist({
+  extensions: [
+    new RuntimeCache([
+      {
+        matcher: ({ url }) => url.pathname.startsWith("/social-timeline/"),
+        handler: new NetworkFirst(),
+      },
+    ]),
   ],
 });
 ```

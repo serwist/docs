@@ -21,9 +21,12 @@ Checks whether the current browser supports navigation preloading.
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
-declare const serwist: Serwist;
+/**
+ * Initialized using `createSerwist`.
+ */
+declare const serwist: SerwistState;
 // ---cut-before---
 import {
   enableNavigationPreload,
@@ -31,6 +34,7 @@ import {
   isNavigationPreloadSupported,
   NavigationRoute,
   NetworkFirst,
+  registerRoute,
 } from "serwist";
 
 declare const self: ServiceWorkerGlobalScope;
@@ -64,7 +68,7 @@ const navigationRoute = new NavigationRoute(navigationStrategy, {
   // denylist: [],
 });
 
-serwist.registerRoute(navigationRoute);
+registerRoute(serwist, navigationRoute);
 ```
 
   </Tab>

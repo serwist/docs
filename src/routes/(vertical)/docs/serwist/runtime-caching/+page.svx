@@ -46,15 +46,15 @@ When the service worker intercepts a network request, Serwist tries to match the
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import { CacheFirst, Serwist } from "serwist";
+import { addEventListeners, CacheFirst, createSerwist, registerCapture } from "serwist";
 
-const serwist = new Serwist();
+const serwist = createSerwist();
 
-serwist.registerCapture(({ request, sameOrigin }) => {
+registerCapture(serwist, ({ request, sameOrigin }) => {
   return sameOrigin && request.destination === "image";
 }, new CacheFirst());
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>
@@ -68,41 +68,43 @@ Serwist allows you to bucket cached responses into separate `Cache` instances us
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import { CacheFirst, StaleWhileRevalidate, Serwist } from "serwist";
+import { addEventListeners, CacheFirst, createSerwist, RuntimeCache, StaleWhileRevalidate } from "serwist";
 
-const serwist = new Serwist({
-  runtimeCaching: [
-    // Handle images
-    {
-      matcher({ request }) {
-        return request.destination === "image";
+const serwist = createSerwist({
+  extensions: [
+    new RuntimeCache([
+      // Handle images
+      {
+        matcher({ request }) {
+          return request.destination === "image";
+        },
+        handler: new StaleWhileRevalidate({
+          cacheName: "images",
+        }),
       },
-      handler: new StaleWhileRevalidate({
-        cacheName: "images",
-      }),
-    },
-    // Handle scripts
-    {
-      matcher({ request }) {
-        return request.destination === "script";
+      // Handle scripts
+      {
+        matcher({ request }) {
+          return request.destination === "script";
+        },
+        handler: new CacheFirst({
+          cacheName: "scripts",
+        }),
       },
-      handler: new CacheFirst({
-        cacheName: "scripts",
-      }),
-    },
-    // Handle styles
-    {
-      matcher({ request }) {
-        return request.destination === "style";
+      // Handle styles
+      {
+        matcher({ request }) {
+          return request.destination === "style";
+        },
+        handler: new CacheFirst({
+          cacheName: "styles",
+        }),
       },
-      handler: new CacheFirst({
-        cacheName: "styles",
-      }),
-    },
+    ]),
   ],
 });
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>

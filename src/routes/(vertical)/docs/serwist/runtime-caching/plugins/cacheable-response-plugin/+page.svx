@@ -25,13 +25,17 @@ See [CacheableResponse's options](/docs/serwist/core/cacheable-response#options)
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
-declare const serwist: Serwist;
+/**
+ * Initialized using `createSerwist`.
+ */
+declare const serwist: SerwistState;
 // ---cut-before---
-import { CacheableResponsePlugin, StaleWhileRevalidate } from "serwist";
+import { CacheableResponsePlugin, StaleWhileRevalidate, registerCapture } from "serwist";
 
-serwist.registerCapture(
+registerCapture(
+  serwist,
   ({ url }) => url.pathname.startsWith("/api/"),
   new StaleWhileRevalidate({
     plugins: [

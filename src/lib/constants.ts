@@ -1,11 +1,11 @@
 import type { Component } from "svelte";
-import type { BlogEntry } from "./types";
 import type { SVGAttributes } from "svelte/elements";
 import LogoNextjs from "$components/icons/LogoNextjs.svelte";
 import LogoNuxt from "$components/icons/LogoNuxt.svelte";
+import LogoSerwist from "$components/icons/LogoSerwist.svelte";
 import LogoVite from "$components/icons/LogoVite.svelte";
 import LogoWebpack from "$components/icons/LogoWebpack.svelte";
-import LogoSerwist from "$components/icons/LogoSerwist.svelte";
+import type { BlogEntry } from "./types";
 
 export const COLOR_SCHEMES = ["dark", "light"] as const;
 

@@ -38,14 +38,16 @@ declare global {
 }
 declare const self: ServiceWorkerGlobalScope;
 // ---cut-before---
-import { Serwist } from "serwist";
+import { addEventListeners, createSerwist } from "serwist";
 
-const serwist = new Serwist({
+const serwist = createSerwist({
   // `PrecacheRoute` is automatically registered for you!
-  precacheEntries: self.__SW_MANIFEST,
+  precache: {
+    entries: self.__SW_MANIFEST,
+  },
 });
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>

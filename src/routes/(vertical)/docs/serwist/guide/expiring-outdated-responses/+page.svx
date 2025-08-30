@@ -23,13 +23,17 @@ To restrict the number of entries stored in a cache, you can use the `maxEntries
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
-declare const serwist: Serwist;
+/**
+ * Initialized using `createSerwist`.
+ */
+declare const serwist: SerwistState;
 // ---cut-before---
-import { CacheFirst, ExpirationPlugin } from "serwist";
+import { CacheFirst, ExpirationPlugin, registerCapture } from "serwist";
 
-serwist.registerCapture(
+registerCapture(
+  serwist,
   ({ request }) => request.destination === "image",
   new CacheFirst({
     cacheName: "image-cache",
@@ -55,13 +59,17 @@ To restrict how long a request is cached for, you can use the `maxAgeSeconds` op
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
-declare const serwist: Serwist;
+/**
+ * Initialized using `createSerwist`.
+ */
+declare const serwist: SerwistState;
 // ---cut-before---
-import { CacheFirst, ExpirationPlugin } from "serwist";
+import { CacheFirst, ExpirationPlugin, registerCapture } from "serwist";
 
-serwist.registerCapture(
+registerCapture(
+  serwist,
   ({ request }) => request.destination === "image",
   new CacheFirst({
     cacheName: "image-cache",

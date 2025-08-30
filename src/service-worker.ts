@@ -1,6 +1,6 @@
-import { defaultCache } from "vite-plugin-serwist/worker";
 import type { PrecacheEntry } from "serwist";
-import { Serwist, CacheFirst, ExpirationPlugin, CacheableResponsePlugin, RangeRequestsPlugin, RuntimeCacheController } from "serwist";
+import { addEventListeners, CacheableResponsePlugin, CacheFirst, createSerwist, ExpirationPlugin, RangeRequestsPlugin, RuntimeCache } from "serwist";
+import { defaultCache } from "vite-plugin-serwist/worker";
 
 declare global {
   interface WorkerGlobalScope {
@@ -10,15 +10,15 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 
-const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
-  precacheOptions: {
+const serwist = createSerwist({
+  precache: {
+    entries: self.__SW_MANIFEST,
     cleanupOutdatedCaches: true,
     concurrency: 20,
     ignoreURLParametersMatching: [/^x-sveltekit-invalidated$/],
   },
-  controllers: [
-    new RuntimeCacheController([
+  extensions: [
+    new RuntimeCache([
       {
         matcher({ request }) {
           return request.destination === "video";
@@ -44,4 +44,4 @@ const serwist = new Serwist({
   navigationPreload: false,
 });
 
-serwist.addEventListeners();
+addEventListeners(serwist);

@@ -38,13 +38,17 @@ The easiest way to use this module is to use the plugin, which automatically det
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
-declare const serwist: Serwist;
+/**
+ * Initialized using `createSerwist`.
+ */
+declare const serwist: SerwistState;
 // ---cut-before---
-import { CacheableResponsePlugin, StaleWhileRevalidate } from "serwist";
+import { CacheableResponsePlugin, StaleWhileRevalidate, registerCapture } from "serwist";
 
-serwist.registerCapture(
+registerCapture(
+  serwist,
   ({ url }) => url.pathname.startsWith("/api/"),
   new StaleWhileRevalidate({
     plugins: [

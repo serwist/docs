@@ -27,11 +27,14 @@ Developers who are already handling navigations by responding with precached HTM
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
-declare const serwist: Serwist;
+/**
+ * Initialized using `createSerwist`.
+ */
+declare const serwist: SerwistState;
 // ---cut-before---
-import { enableNavigationPreload, NavigationRoute, NetworkFirst } from "serwist";
+import { enableNavigationPreload, NavigationRoute, NetworkFirst, registerRoute } from "serwist";
 
 enableNavigationPreload();
 
@@ -47,7 +50,7 @@ const navigationRoute = new NavigationRoute(navigationStrategy, {
   // denylist: [],
 });
 
-serwist.registerRoute(navigationRoute);
+registerRoute(serwist, navigationRoute);
 ```
 
   </Tab>

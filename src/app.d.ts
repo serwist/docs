@@ -1,7 +1,6 @@
 // See https://kit.svelte.dev/docs/types#app
-import type { BlogMetadata, OpenGraphImage, SidebarGroup } from "$lib/types";
-import type { getHighlighter } from "shiki";
 import type { Component } from "svelte";
+import type { SidebarGroup } from "$lib/types";
 
 // for information about these interfaces
 declare global {

@@ -29,13 +29,13 @@ For same-origin requests the `RegExp` only needs to match part of the URL. For r
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import { NetworkFirst, RegExpRoute, Serwist } from "serwist";
+import { addEventListeners, createSerwist, NetworkFirst, RegExpRoute, registerRoute } from "serwist";
 
-const serwist = new Serwist();
+const serwist = createSerwist();
 
-serwist.registerRoute(new RegExpRoute(/^\/api\/.*/, new NetworkFirst(), "POST"));
+registerRoute(serwist, new RegExpRoute(/^\/api\/.*/, new NetworkFirst(), "POST"));
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>

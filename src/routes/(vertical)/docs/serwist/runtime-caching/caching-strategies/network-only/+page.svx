@@ -31,14 +31,16 @@ If the network request fails, this will throw a `SerwistError` exception.
   <Tab id="sw-ts">
 
 ```typescript twoslash
-import { NetworkOnly, Serwist } from "serwist";
+import { createSerwist, NetworkOnly, RuntimeCache } from "serwist";
 
-const serwist = new Serwist({
-  runtimeCaching: [
-    {
-      matcher: ({ url }) => url.pathname.startsWith("/admin/"),
-      handler: new NetworkOnly(),
-    },
+const serwist = createSerwist({
+  extensions: [
+    new RuntimeCache([
+      {
+        matcher: ({ url }) => url.pathname.startsWith("/admin/"),
+        handler: new NetworkOnly(),
+      },
+    ]),
   ],
 });
 ```

@@ -41,26 +41,29 @@ declare global {
 }
 declare const self: ServiceWorkerGlobalScope;
 // ---cut-before---
-import { NetworkOnly, PrecacheFallbackPlugin, Serwist } from "serwist";
+import { addEventListeners, createSerwist, NetworkOnly, PrecacheFallbackPlugin, registerCapture } from "serwist";
 
-const serwist = new Serwist({
+const serwist = createSerwist({
   // Assuming that your precache list includes "/fallback.html".
-  precacheEntries: self.__SW_MANIFEST,
+  precache: {
+    entries: self.__SW_MANIFEST,
+  },
 });
 
-serwist.registerCapture(
+registerCapture(
+  serwist,
   /^\/admin\/.*\.html$/,
   new NetworkOnly({
     plugins: [
       new PrecacheFallbackPlugin({
         fallbackUrls: ["/fallback.html"],
-        precacheController: serwist.precache,
+        serwist,
       }),
     ],
   }),
 );
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>

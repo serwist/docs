@@ -3,7 +3,7 @@
   import "../app.css";
 
   import { mount, unmount } from "svelte";
-  import { useSerwist } from "virtual:serwist.svelte";
+  // import { useSerwist } from "virtual:serwist/svelte";
 
   import { dev } from "$app/environment";
   import { page } from "$app/state";
@@ -17,7 +17,7 @@
   const isDark = $derived($colorScheme === "dark");
   const title = $derived(page.data.title ? `${page.data.title} - Serwist` : "Serwist");
   const ogImage = $derived(page.data.ogImage ?? data.fallbackOgImage);
-  const { serwist } = useSerwist();
+  // const { serwist } = useSerwist();
 
   $effect(() => {
     const twoslashElement = mount(Twoslash, {
@@ -28,12 +28,12 @@
   });
 
   $effect(() => {
-    if (!dev && serwist) {
-      serwist.addEventListener("installed", () => {
-        console.log("Serwist installed!");
-      });
-      void serwist.register();
-    }
+    // if (!dev && serwist) {
+    //   serwist.addEventListener("installed", () => {
+    //     console.log("Serwist installed!");
+    //   });
+    //   void serwist.register();
+    // }
   });
 
   $effect(() => {

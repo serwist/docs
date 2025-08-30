@@ -166,5 +166,5 @@ const serwist = (): Plugin[] => {
 };
 
 export default defineConfig({
-  plugins: [tailwindcss(), enhancedImages(), sveltekit(), serwist()],
+  plugins: [tailwindcss(), enhancedImages(), sveltekit()],
 });

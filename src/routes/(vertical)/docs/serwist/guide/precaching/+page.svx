@@ -39,7 +39,7 @@ Serwist expects an array of objects consisting of `url` and `revision`. This arr
 
 ```typescript twoslash
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { createSerwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -49,7 +49,7 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 // ---cut-before---
-const serwist = new Serwist();
+const serwist = createSerwist();
 
 serwist.precache.addToCacheList([
   { url: "/index.html", revision: "383676" },
@@ -104,7 +104,7 @@ You can ignore a different set of search parameters using `ignoreURLParametersMa
 
 ```typescript twoslash
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { createSerwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -114,9 +114,9 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 // ---cut-before---
-const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
-  precacheOptions: {
+const serwist = createSerwist({
+  precache: {
+    entries: self.__SW_MANIFEST,
     // Ignore all URL parameters.
     ignoreURLParametersMatching: [/.*/],
   },
@@ -137,7 +137,7 @@ You can change this to something else or disable it completely by setting `direc
 
 ```typescript twoslash
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { createSerwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -147,9 +147,9 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 // ---cut-before---
-const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
-  precacheOptions: {
+const serwist = createSerwist({
+  precache: {
+    entries: self.__SW_MANIFEST,
     directoryIndex: null,
   },
 });
@@ -169,7 +169,7 @@ You can disable this behavior by setting `cleanURLs`:
 
 ```typescript twoslash
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { createSerwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -179,9 +179,9 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 // ---cut-before---
-const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
-  precacheOptions: {
+const serwist = createSerwist({
+  precache: {
+    entries: self.__SW_MANIFEST,
     cleanURLs: false,
   },
 });
@@ -199,7 +199,7 @@ If you want to define custom matches from incoming requests to precached assets,
 
 ```typescript twoslash
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { createSerwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -209,9 +209,9 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 // ---cut-before---
-const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
-  precacheOptions: {
+const serwist = createSerwist({
+  precache: {
+    entries: self.__SW_MANIFEST,
     urlManipulation({ url }) {
       const alteredUrl = new URL(url);
       // Your logic goes here...
@@ -239,7 +239,7 @@ To get the correct cache key, you can call `getCacheKeyForURL()` and then use th
 
 ```typescript twoslash
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { addEventListeners, createSerwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -249,23 +249,25 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 // ---cut-before---
-const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
+const serwist = createSerwist({
+  precache: {
+    entries: self.__SW_MANIFEST,
+  },
 });
 
-const cache = await caches.open(serwist.precacheStrategy.cacheName);
+const cache = await caches.open(serwist.precache.strategy.cacheName);
 
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (url.origin === location.origin && url.pathname === "/test-precache") {
-    const cacheKey = serwist.getPrecacheKeyForUrl("/precached-file.html");
+    const cacheKey = serwist.precache.getPrecacheKeyForUrl("/precached-file.html");
     if (cacheKey) {
       event.respondWith((async () => (await cache.match(cacheKey)) ?? Response.error())());
     }
   }
 });
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>
@@ -278,7 +280,7 @@ Alternatively, if all you need is the precached `Response` object, you can call 
 
 ```typescript twoslash
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { addEventListeners, createSerwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -288,18 +290,20 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 // ---cut-before---
-const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
+const serwist = createSerwist({
+  precache: {
+    entries: self.__SW_MANIFEST,
+  },
 });
 
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (url.origin === location.origin && url.pathname === "/test-precache") {
-    event.respondWith((async () => (await serwist.matchPrecache("/precached-file.html")) ?? Response.error())());
+    event.respondWith((async () => (await serwist.precache.matchPrecache("/precached-file.html")) ?? Response.error())());
   }
 });
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>

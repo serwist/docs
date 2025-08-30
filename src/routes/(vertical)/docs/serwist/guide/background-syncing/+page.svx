@@ -28,17 +28,21 @@ The easiest way to set up is to use the plugin, which automatically queues up fa
   <Tab id="sw-ts">
 
 ```ts twoslash
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
-declare const serwist: Serwist;
+/**
+ * Initialized using `createSerwist`.
+ */
+declare const serwist: SerwistState;
 // ---cut-before---
-import { BackgroundSyncPlugin, NetworkOnly } from "serwist";
+import { BackgroundSyncPlugin, NetworkOnly, registerCapture } from "serwist";
 
 const backgroundSync = new BackgroundSyncPlugin("myQueueName", {
   maxRetentionTime: 24 * 60, // Retry for a maximum of 24 Hours (specified in minutes)
 });
 
-serwist.registerCapture(
+registerCapture(
+  serwist,
   /\/api\/.*\/*.json/,
   new NetworkOnly({
     plugins: [backgroundSync],
@@ -56,12 +60,15 @@ This plugin hooks into the `fetchDidFail` callback, which is only invoked if the
   <Tab id="sw-ts">
 
 ```ts twoslash
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
-declare const serwist: Serwist;
+/**
+ * Initialized using `createSerwist`.
+ */
+declare const serwist: SerwistState;
 // ---cut-before---
 import type { StrategyPlugin } from "serwist";
-import { BackgroundSyncPlugin, NetworkOnly } from "serwist";
+import { BackgroundSyncPlugin, NetworkOnly, registerCapture } from "serwist";
 
 const statusPlugin = {
   fetchDidSucceed({ response }) {
@@ -78,7 +85,8 @@ const backgroundSync = new BackgroundSyncPlugin("myQueueName", {
   maxRetentionTime: 24 * 60, // Retry for a maximum of 24 Hours (specified in minutes)
 });
 
-serwist.registerCapture(
+registerCapture(
+  serwist,
   /\/api\/.*\/*.json/,
   new NetworkOnly({
     plugins: [statusPlugin, backgroundSync],
@@ -92,16 +100,19 @@ serwist.registerCapture(
 
 ```js twoslash
 // @filename: sw-decl.d.ts
-import type { Serwist } from "serwist";
+import type { SerwistState } from "serwist";
 
 declare global {
-  var serwist: Serwist;
+  /**
+   * Initialized using `createSerwist`.
+   */
+  var serwist: SerwistState;
 }
 // @filename: sw.js
 // @lib: esnext,webworker
 // @types: ./sw-decl.d.ts
 // ---cut-before---
-import { BackgroundSyncPlugin, NetworkOnly } from "serwist";
+import { BackgroundSyncPlugin, NetworkOnly, registerCapture } from "serwist";
 
 /** @type {import("serwist").StrategyPlugin} */
 const statusPlugin = {
@@ -119,7 +130,8 @@ const backgroundSync = new BackgroundSyncPlugin("myQueueName", {
   maxRetentionTime: 24 * 60, // Retry for a maximum of 24 Hours (specified in minutes)
 });
 
-serwist.registerCapture(
+registerCapture(
+  serwist,
   /\/api\/.*\/*.json/,
   new NetworkOnly({
     plugins: [statusPlugin, backgroundSync],
