@@ -2,12 +2,10 @@ import { dev } from "$app/environment";
 import { Resvg } from "@resvg/resvg-js";
 import { type ReactElement, createElement } from "react";
 import type { Font } from "satori";
-import satori, { init as initSatori } from "satori/wasm";
-import initYoga, { type Yoga } from "yoga-wasm-web";
+import satori from "satori";
 import { encodeBase64 } from "./base64";
 import type { OpenGraphImage } from "./types";
 
-let yoga: Yoga | null = null;
 let geistFont: Font | null = null;
 
 export interface ImageResponseOptions extends ResponseInit {
@@ -37,11 +35,6 @@ export class ImageResponse extends Response {
     const stream = new ReadableStream({
       async start(controller) {
         try {
-          if (yoga === null) {
-            const yogaWasm = await (await fetch("/yoga.wasm")).arrayBuffer();
-            yoga = await initYoga(yogaWasm);
-            initSatori(yoga);
-          }
           if (geistFont === null) {
             geistFont = {
               name: "Geist",
