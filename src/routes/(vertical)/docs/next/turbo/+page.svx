@@ -11,7 +11,7 @@ layout: docs
 
 <Callout type="info">
 
-  This quick guide is meant for webpack. If you are using Turbopack, head to [the Turbopack quick guide](/docs/next/turbo).
+  This quick guide is meant for Turbopack. If you are using webpack, head to [the webpack quick guide](/docs/next/getting-started).
 
 </Callout>
 
@@ -23,28 +23,28 @@ Run the following command:
   <Tab id="npm">
 
 ```bash
-npm i @serwist/next && npm i -D serwist
+npm i -D @serwist/turbopack esbuild-wasm serwist
 ```
 
   </Tab>
   <Tab id="yarn">
 
 ```bash
-yarn add @serwist/next && yarn add -D serwist
+yarn add -D @serwist/turbopack esbuild-wasm serwist
 ```
 
   </Tab>
   <Tab id="pnpm">
 
 ```bash
-pnpm add @serwist/next && pnpm add -D serwist
+pnpm add -D @serwist/turbopack esbuild-wasm serwist
 ```
 
   </Tab>
   <Tab id="bun">
 
 ```bash
-bun add @serwist/next && bun add -D serwist
+bun add -D @serwist/turbopack esbuild-wasm serwist
 ```
 
   </Tab>
@@ -52,169 +52,62 @@ bun add @serwist/next && bun add -D serwist
 
 ## Implementation
 
-### Step 1: Wrap your Next.js config with withSerwist
+### Step 1: Update your Next.js config
 
 Update or create your Next.js configuration file with the following content:
 
-<Tabs id="updating-next-config" tabs={[["next.config.mjs", "next-config-mjs"], ["next.config.mjs (light)", "next-config-mjs-light-"], ["next.config.js", "next-config-js"]]}>
+<Tabs id="updating-next-config" tabs={[["next.config.mjs", "next-config-mjs"]]}>
   <Tab id="next-config-mjs">
 
 ```javascript twoslash
+/** @type {import("next").NextConfig} */
+const nextConfig = {
+  serverExternalPackages: ["esbuild-wasm"],
+};
+
+export default nextConfig;
+```
+
+  </Tab>
+</Tabs>
+
+### Step 2: Setup Serwist's Route Handler
+
+Add the following route to enable Serwist:
+
+<Tabs id="serwist-route-handler" tabs={[["app/serwist/[path]/route.ts", "app-serwist-path-route-ts"]]}>
+  <Tab id="app-serwist-path-route-ts">
+
+```ts twoslash
 import { spawnSync } from "node:child_process";
-import withSerwistInit from "@serwist/next";
+import { createSerwistRoute } from "@serwist/turbopack";
 
 // Using `git rev-parse HEAD` might not the most efficient
 // way of determining a revision. You may prefer to use
 // the hashes of every extra file you precache.
 const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
 
-const withSerwist = withSerwistInit({
+export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } = createSerwistRoute({
   additionalPrecacheEntries: [{ url: "/~offline", revision }],
-  // Note: This is only an example. If you use Pages Router,
-  // use something else that works, such as "service-worker/index.ts".
   swSrc: "app/sw.ts",
-  swDest: "public/sw.js",
-});
-
-export default withSerwist({
-  // Your Next.js config
+  // Copy relevant Next.js configuration (assetPrefix,
+  // basePath, distDir) over if you've changed them.
+  nextConfig: {},
 });
 ```
 
   </Tab>
-  <Tab id="next-config-mjs-light-">
-
-```javascript twoslash
-// If your deployment platform requires your production image's size to not exceed a certain limit,
-// you can also install `@serwist/next` as one of your `devDependencies` and do this:
-import { spawnSync } from "node:child_process";
-import {
-  PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_BUILD,
-} from "next/constants.js";
-
-/** @type {(phase: string, defaultConfig: import("next").NextConfig) => Promise<import("next").NextConfig>} */
-export default async (phase) => {
-  /** @type {import("next").NextConfig} */
-  const nextConfig = {};
-
-  if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    // Using `git rev-parse HEAD` might not the most efficient
-    // way of determining a revision. You may prefer to use
-    // the hashes of every extra file you precache.
-    const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
-
-    const withSerwist = (await import("@serwist/next")).default({
-      additionalPrecacheEntries: [{ url: "/~offline", revision }],
-      // Note: This is only an example. If you use Pages Router,
-      // use something else that works, such as "service-worker/index.ts".
-      swSrc: "app/sw.ts",
-      swDest: "public/sw.js",
-    });
-    return withSerwist(nextConfig);
-  }
-  
-  return nextConfig;
-};
-```
-
-  </Tab>
-  <Tab id="next-config-js">
-
-```javascript twoslash
-const {
-  PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_BUILD,
-} = require("next/constants");
-
-/** @type {(phase: string, defaultConfig: import("next").NextConfig) => Promise<import("next").NextConfig>} */
-module.exports = async (phase) => {
-  /** @type {import("next").NextConfig} */
-  const nextConfig = {};
-
-  if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    // Using `git rev-parse HEAD` might not the most efficient
-    // way of determining a revision. You may prefer to use
-    // the hashes of every extra file you precache.
-    const { spawnSync } = require("node:child_process");
-    const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
-
-    const withSerwist = (await import("@serwist/next")).default({
-      additionalPrecacheEntries: [{ url: "/~offline", revision }],
-      // Note: This is only an example. If you use Pages Router,
-      // use something else that works, such as "service-worker/index.ts".
-      swSrc: "app/sw.ts",
-      swDest: "public/sw.js",
-    });
-    return withSerwist(nextConfig);
-  }
-
-  return nextConfig;
-};
-```
-
-  </Tab>
 </Tabs>
 
-### Step 2: Update tsconfig.json
-
-If you use TypeScript, add the following content to tsconfig.json in order to get the correct types:
-
-<Tabs id="updating-tsconfig" tabs={[["tsconfig.json", "tsconfig-json"]]}>
-  <Tab id="tsconfig-json">
-
-```json
-{
-  // Other stuff...
-  "compilerOptions": {
-    // Other options...
-    "types": [
-      // Other types...
-      // This allows Serwist to type `window.serwist`.
-      "@serwist/next/typings"
-    ],
-    "lib": [
-      // Other libs...
-      // Add this! Doing so adds WebWorker and ServiceWorker types to the global.
-      "webworker"
-    ],
-  },
-  "exclude": ["public/sw.js"]
-}
-```
-
-  </Tab>
-</Tabs>
-
-Otherwise, safely skip this step.
-
-### Step 3: Update .gitignore
-
-If you use Git, update your .gitignore like so:
-
-<Tabs id="updating-gitignore" tabs={[[".gitignore", "-gitignore"]]}>
-  <Tab id="-gitignore">
-
-```sh
-# Serwist
-public/sw*
-public/swe-worker*
-```
-
-  </Tab>
-</Tabs>
-
-Otherwise, safely skip this step.
-
-### Step 4: Create a service worker
+### Step 3: Create a service worker
 
 Basic service worker template to get Serwist up and running:
 
-<Tabs id="writing-a-sw" tabs={[["sw.ts", "sw-ts"]]}>
-  <Tab id="sw-ts">
+<Tabs id="writing-a-sw" tabs={[["app/sw.ts", "app-sw-ts"]]}>
+  <Tab id="app-sw-ts">
 
 ```typescript twoslash
-import { defaultCache } from "@serwist/next/worker";
+import { defaultCache } from "@serwist/turbopack/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
 import { Serwist } from "serwist";
 
@@ -254,7 +147,7 @@ serwist.addEventListeners();
   </Tab>
 </Tabs>
 
-### Step 5: Add a web application manifest
+### Step 4: Add a web application manifest
 
 Update app/manifest.json (App Router) or public/manifest.json (Pages Router) with the following content:
 
@@ -289,7 +182,7 @@ Update app/manifest.json (App Router) or public/manifest.json (Pages Router) wit
   </Tab>
 </Tabs>
 
-### Step 6: Add metadata
+### Step 5: Add metadata
 
 Add the following content to app/layout.tsx or pages/\_app.tsx:
 
@@ -297,8 +190,13 @@ Add the following content to app/layout.tsx or pages/\_app.tsx:
   <Tab id="app-layout-tsx">
 
 ```tsx
+// app/lib/client.ts
+"use client";
+export { SerwistProvider } from "@serwist/turbopack/react";
+// app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { SerwistProvider } from "./lib/client";
 
 const APP_NAME = "PWA App";
 const APP_DEFAULT_TITLE = "My Awesome PWA App";
@@ -348,7 +246,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" dir="ltr">
       <head />
-      <body>{children}</body>
+      <body>
+        <SerwistProvider swUrl="/serwist/sw.js">{children}</SerwistProvider>
+      </body>
     </html>
   );
 }
@@ -358,6 +258,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   <Tab id="pages-app-tsx">
 
 ```tsx
+import { SerwistProvider } from "@serwist/turbopack/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
@@ -437,7 +338,9 @@ export default function App({ Component, pageProps }: AppProps) {
           sizes="640x1136"
         />
       </Head>
-      <Component {...pageProps} />
+      <SerwistProvider swUrl="/serwist/sw.js">
+        <Component {...pageProps} />
+      </SerwistProvider>
     </>
   );
 }
