@@ -8,14 +8,14 @@ module.exports = {
     return !excludePackages.includes(packageName);
   },
   target(dep) {
-    if (/^react(-dom)?$/.test(dep) || dep === "vite-plugin-serwist") {
+    if (/^react(-dom)?$/.test(dep) || dep === "vite-plugin-serwist" || dep === "@serwist/utils") {
       return "@latest";
     }
     if (dep.includes("serwist")) {
       return "@preview";
     }
-    if (dep === "tailwindcss" || dep === "@tailwindcss/vite") {
-      return "@next";
+    if (dep === "vite") {
+      return "@beta";
     }
     return "latest";
   },

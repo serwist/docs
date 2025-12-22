@@ -18,12 +18,15 @@
 
   const { id, tabs, children }: TabsProps = $props();
 
-  let currentTab = $state(tabs[0][1]);
-
-  $effect(() => void (currentTab = tabs[0][1]));
+  let currentTab = $derived.by(() => {
+    const state = $state(tabs[0][1]);
+    return state;
+  });
 
   setContext<TabsState>("tabsState", {
-    id,
+    get id() {
+      return id;
+    },
     get current() {
       return currentTab;
     },
