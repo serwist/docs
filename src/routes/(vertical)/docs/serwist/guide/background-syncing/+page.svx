@@ -3,10 +3,10 @@ layout: docs
 title: "Background synchronizing"
 ---
 <script>
-  import Callout from "$components/Callout.svelte";
-  import Image from "$components/Image.svelte";
-  import Tabs from "$components/Tabs.svelte";
-  import Tab from "$components/Tab.svelte";
+  import Callout from "$components/callout.svelte";
+  import Image from "$components/image.svelte";
+  import Tabs from "$components/tabs.svelte";
+  import Tab from "$components/tab.svelte";
   import bgSyncIllustration from "$images/bg-sync-example-sync-button.png?w=804;402;201&enhanced";
 </script>
 

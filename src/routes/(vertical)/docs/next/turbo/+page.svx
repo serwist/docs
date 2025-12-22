@@ -4,12 +4,10 @@ title: "Turbopack"
 footer: "@serwist/next"
 ---
 <script>
-  import Callout from "$components/Callout.svelte";
-  import Tabs from "$components/Tabs.svelte";
-  import Tab from "$components/Tab.svelte";
+  import Callout from "$components/callout.svelte";
+  import Tabs from "$components/tabs.svelte";
+  import Tab from "$components/tab.svelte";
 </script>
-
-# Getting started
 
 <Callout type="info">
 
@@ -84,13 +82,15 @@ Add the following route to enable Serwist:
 import { spawnSync } from "node:child_process";
 import { createSerwistRoute } from "@serwist/turbopack";
 
-// Using `git rev-parse HEAD` might not the most efficient
-// way of determining a revision. You may prefer to use
+// A revision helps Serwist version a precached page. This
+// avoids outdated precached responses being used. Using
+// `git rev-parse HEAD` might not the most efficient way
+// of determining a revision, however. You may prefer to use
 // the hashes of every extra file you precache.
 const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
 
 export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } = createSerwistRoute({
-  additionalPrecacheEntries: [{ url: "/~offline", revision }],
+  additionalPrecacheEntries: [{ url: "/precached", revision }],
   swSrc: "app/sw.ts",
   // Copy relevant Next.js configuration (assetPrefix,
   // basePath, distDir) over if you've changed them.
@@ -111,7 +111,7 @@ Basic service worker template to get Serwist up and running:
 ```typescript twoslash
 import { defaultCache } from "@serwist/turbopack/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
-import { Serwist } from "serwist";
+import { addEventListeners, createSerwist, RuntimeCache } from "serwist";
 
 // This declares the value of `injectionPoint` to TypeScript.
 // `injectionPoint` is the string that will be replaced by the
@@ -125,25 +125,31 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 
-const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
+const serwist = createSerwist({
+  precache: {
+    entries: self.__SW_MANIFEST,
+  },
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
-  fallbacks: {
-    entries: [
-      {
-        url: "/~offline",
-        matcher({ request }) {
-          return request.destination === "document";
-        },
+  extensions: [
+    new RuntimeCache(defaultCache, {
+      warmEntries: ["/~offline"],
+      fallbacks: {
+        entries: [
+          {
+            url: "/~offline",
+            matcher({ request }) {
+              return request.destination === "document";
+            },
+          },
+        ],
       },
-    ],
-  },
+    }),
+  ],
 });
 
-serwist.addEventListeners();
+addEventListeners(serwist);
 ```
 
   </Tab>

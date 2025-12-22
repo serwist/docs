@@ -1,8 +1,7 @@
 import { BLOG_ENTRIES } from "$lib/constants";
-import { encodeOpenGraph } from "$lib/encodeOpenGraph";
-import type { LayoutServerLoad } from "./$types";
+import { encodeOpenGraph } from "$lib/encode-open-graph";
 
-export const load: LayoutServerLoad = ({ url }) => {
+export const load = ({ url }) => {
   const metadata = BLOG_ENTRIES.find((entry) => entry.href === url.pathname);
   return {
     ...(metadata && {

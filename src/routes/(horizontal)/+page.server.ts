@@ -1,7 +1,6 @@
-import { encodeOpenGraph } from "$lib/encodeOpenGraph";
-import type { PageServerLoad } from "./$types";
+import { encodeOpenGraph } from "$lib/encode-open-graph";
 
-export const load: PageServerLoad = () => ({
+export const load = () => ({
   title: "Home",
   ogImage: encodeOpenGraph("Home"),
 });

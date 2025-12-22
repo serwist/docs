@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "$components/TwoslashHover.svelte";
+  import "$components/twoslash-hover.svelte";
   import "../app.css";
 
   import { mount, unmount } from "svelte";
@@ -8,10 +8,10 @@
   import { dev } from "$app/environment";
   import { page } from "$app/state";
   import GlobalSvgDefs from "$components/icons/index.svelte";
-  import Twoslash from "$components/Twoslash.svelte";
+  import Twoslash from "$components/twoslash.svelte";
   import { CANONICAL_URL, REROUTE } from "$lib/constants";
-  import { isColorScheme } from "$lib/isColorScheme";
-  import { colorScheme } from "$lib/stores/colorScheme";
+  import { isColorScheme } from "$lib/is-color-scheme";
+  import { colorScheme } from "$lib/stores/color-scheme";
 
   const { data, children } = $props();
   const isDark = $derived($colorScheme === "dark");

@@ -136,7 +136,7 @@
   & {
     list-style-position: inside;
     list-style-type: disc;
-    @apply pl-4 break-words marker:text-black dark:marker:text-white;
+    @apply pl-4 wrap-break-word marker:text-black dark:marker:text-white;
   }
   & > li {
     @apply mb-2;
@@ -195,7 +195,7 @@
   h5,
   h6,
   blockquote {
-    @apply text-balance break-words;
+    @apply text-balance wrap-break-word;
   }
   h1 {
     @apply text-4xl leading-10 font-semibold tracking-tight;

@@ -1,15 +1,17 @@
 import type { Component } from "svelte";
 import type { SVGAttributes } from "svelte/elements";
-import LogoNextjs from "$components/icons/LogoNextjs.svelte";
-import LogoNuxt from "$components/icons/LogoNuxt.svelte";
-import LogoSerwist from "$components/icons/LogoSerwist.svelte";
-import LogoVite from "$components/icons/LogoVite.svelte";
-import LogoWebpack from "$components/icons/LogoWebpack.svelte";
+import LogoNextjs from "$components/icons/logo-nextjs.svelte";
+import LogoNuxt from "$components/icons/logo-nuxt.svelte";
+import LogoSerwist from "$components/icons/logo-serwist.svelte";
+import LogoVite from "$components/icons/logo-vite.svelte";
+import LogoWebpack from "$components/icons/logo-webpack.svelte";
 import type { BlogEntry } from "./types";
 
 export const COLOR_SCHEMES = ["dark", "light"] as const;
 
 export const CANONICAL_URL = "https://serwist.pages.dev";
+
+export const ENCODED_CANONICAL_URL = btoa(CANONICAL_URL);
 
 export const GITHUB_REPO_URL = "https://github.com/serwist/serwist";
 

@@ -1,11 +1,11 @@
 <script>
-  import Code from "$components/Code.svelte";
-  // import LogoJs from "$components/icons/LogoJs.svelte";
-  // import LogoNextjs from "$components/icons/LogoNextjs.svelte";
-  // import LogoNuxt from "$components/icons/LogoNuxt.svelte";
-  // import LogoSvelte from "$components/icons/LogoSvelte.svelte";
-  // import LogoVite from "$components/icons/LogoVite.svelte";
-  // import LogoWebpack from "$components/icons/LogoWebpack.svelte";
+  import Code from "$components/code.svelte";
+  // import LogoJs from "$components/icons/logo-js.svelte";
+  // import LogoNextjs from "$components/icons/logo-nextjs.svelte";
+  // import LogoNuxt from "$components/icons/logo-nuxt.svelte";
+  // import LogoSvelte from "$components/icons/logo-svelte.svelte";
+  // import LogoVite from "$components/icons/logo-vite.svelte";
+  // import LogoWebpack from "$components/icons/logo-webpack.svelte";
   import { clsx } from "$lib/clsx";
 
   import Preview from "./Preview.svx";

@@ -1,8 +1,7 @@
-import { ENCODED_CANONICAL_URL } from "$lib/constants.server";
-import type { LayoutServerLoad } from "./$types";
+import { ENCODED_CANONICAL_URL } from "$lib/constants";
 
 export const prerender = true;
 
-export const load: LayoutServerLoad = () => ({
+export const load = () => ({
   fallbackOgImage: `/og/${ENCODED_CANONICAL_URL}/${btoa("Serwist")}.png`,
 });

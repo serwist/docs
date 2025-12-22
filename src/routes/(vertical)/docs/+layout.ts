@@ -1,5 +1,3 @@
-import type { LayoutLoad } from "./$types";
-
-export const load: LayoutLoad = () => ({
+export const load = () => ({
   noDefaultTitle: true,
 });
