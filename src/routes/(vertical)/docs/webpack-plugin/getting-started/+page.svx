@@ -151,7 +151,7 @@ Otherwise, safely skip this step.
 
 ### Step 4: Create a service worker
 
-Basic service worker template to get Serwist up and running:
+Here is a basic service worker template to get Serwist up and running:
 
 <Tabs id="writing-a-sw" tabs={[["sw.ts", "sw-ts"]]}>
   <Tab id="sw-ts">

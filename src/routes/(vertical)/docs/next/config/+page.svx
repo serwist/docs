@@ -7,14 +7,26 @@ layout: docs
   import Tab from "$components/Tab.svelte";
 </script>
 
-# Getting started
+# Configurator mode
 
-<Callout type="info">
+## Why?
 
-  This quick guide is meant for webpack. If you are using Turbopack, head to [the Turbopack quick guide](/docs/next/turbo). Alternatively,
-  see if [configurator mode](/docs/next/config) suits your use case more.
+Prior to Serwist 9.4, Serwist integrated with Next.js by wrapping `withSerwist` around your Next.js configuration. This tied Serwist
+to webpack's lifecycle, and it could only build the service worker after webpack finished bundling your app, but before Next.js prerendered
+any route. Because of this timing, Serwist had no visibility into prerendered output and could not automatically precache those routes.
 
-</Callout>
+Configurator mode exists to solve this problem. Rather than hooking Serwist directly into the Next.js build, Serwist now has an
+external build step. In this mode, `@serwist/next` only generates the `@serwist/cli` configuration needed to build the service worker.
+The service worker is then built after Next.js has prerendered everything, allowing Serwist to automatically precache all prerendered
+routes.
+
+This approach also makes the integration bundler–agnostic. Since configurator mode does not depend on webpack internals, it works
+with Turbopack as well, eliminating the need for a separate implementation like `@serwist/turbopack`.
+
+If you are looking to set up Serwist with Next.js the classic way, see the following guides:
+
+- [Using Serwist with Next.js and webpack](/docs/next/getting-started)
+- [Using Serwist with Next.js and Turbopack](/docs/next/turbo)
 
 ## Install
 
@@ -24,28 +36,28 @@ Run the following command:
   <Tab id="npm">
 
 ```bash
-npm i @serwist/next && npm i -D serwist
+npm i -D @serwist/next @serwist/cli serwist esbuild concurrently
 ```
 
   </Tab>
   <Tab id="yarn">
 
 ```bash
-yarn add @serwist/next && yarn add -D serwist
+yarn add -D @serwist/next @serwist/cli serwist esbuild concurrently
 ```
 
   </Tab>
   <Tab id="pnpm">
 
 ```bash
-pnpm add @serwist/next && pnpm add -D serwist
+pnpm add -D @serwist/next @serwist/cli serwist esbuild concurrently
 ```
 
   </Tab>
   <Tab id="bun">
 
 ```bash
-bun add @serwist/next && bun add -D serwist
+bun add -D @serwist/next @serwist/cli serwist esbuild concurrently
 ```
 
   </Tab>
@@ -53,141 +65,59 @@ bun add @serwist/next && bun add -D serwist
 
 ## Implementation
 
-### Step 1: Wrap your Next.js config with withSerwist
+### Step 1: Configure Serwist
 
-Update or create your Next.js configuration file with the following content:
+Add serwist.config.js with the following content:
 
-<Tabs id="updating-next-config" tabs={[["next.config.mjs", "next-config-mjs"], ["next.config.mjs (light)", "next-config-mjs-light-"], ["next.config.js", "next-config-js"]]}>
-  <Tab id="next-config-mjs">
+<Tabs id="write-serwist-config" tabs={[["serwist.config.js", "serwist-config-js"]]}>
+  <Tab id="serwist-config-js">
 
 ```javascript twoslash
+// @ts-check
 import { spawnSync } from "node:child_process";
-import withSerwistInit from "@serwist/next";
+import { serwist } from "@serwist/next/config";
 
 // Using `git rev-parse HEAD` might not the most efficient
 // way of determining a revision. You may prefer to use
 // the hashes of every extra file you precache.
 const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
 
-const withSerwist = withSerwistInit({
-  additionalPrecacheEntries: [{ url: "/~offline", revision }],
-  // Note: This is only an example. If you use Pages Router,
-  // use something else that works, such as "service-worker/index.ts".
+export default await serwist({
   swSrc: "app/sw.ts",
   swDest: "public/sw.js",
+  // If you want to precache any other page that is not
+  // already detected by Serwist, add them here. Otherwise,
+  // delete `revision`.
+  additionalPrecacheEntries: [{ url: "/precached", revision }],
 });
-
-export default withSerwist({
-  // Your Next.js config
-});
-```
-
-  </Tab>
-  <Tab id="next-config-mjs-light-">
-
-```javascript twoslash
-// If your deployment platform requires your production image's size to not exceed a certain limit,
-// you can also install `@serwist/next` as one of your `devDependencies` and do this:
-import { spawnSync } from "node:child_process";
-import {
-  PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_BUILD,
-} from "next/constants.js";
-
-/** @type {(phase: string, defaultConfig: import("next").NextConfig) => Promise<import("next").NextConfig>} */
-export default async (phase) => {
-  /** @type {import("next").NextConfig} */
-  const nextConfig = {};
-
-  if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    // Using `git rev-parse HEAD` might not the most efficient
-    // way of determining a revision. You may prefer to use
-    // the hashes of every extra file you precache.
-    const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
-
-    const withSerwist = (await import("@serwist/next")).default({
-      additionalPrecacheEntries: [{ url: "/~offline", revision }],
-      // Note: This is only an example. If you use Pages Router,
-      // use something else that works, such as "service-worker/index.ts".
-      swSrc: "app/sw.ts",
-      swDest: "public/sw.js",
-    });
-    return withSerwist(nextConfig);
-  }
-  
-  return nextConfig;
-};
-```
-
-  </Tab>
-  <Tab id="next-config-js">
-
-```javascript twoslash
-const {
-  PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_BUILD,
-} = require("next/constants");
-
-/** @type {(phase: string, defaultConfig: import("next").NextConfig) => Promise<import("next").NextConfig>} */
-module.exports = async (phase) => {
-  /** @type {import("next").NextConfig} */
-  const nextConfig = {};
-
-  if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    // Using `git rev-parse HEAD` might not the most efficient
-    // way of determining a revision. You may prefer to use
-    // the hashes of every extra file you precache.
-    const { spawnSync } = require("node:child_process");
-    const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
-
-    const withSerwist = (await import("@serwist/next")).default({
-      additionalPrecacheEntries: [{ url: "/~offline", revision }],
-      // Note: This is only an example. If you use Pages Router,
-      // use something else that works, such as "service-worker/index.ts".
-      swSrc: "app/sw.ts",
-      swDest: "public/sw.js",
-    });
-    return withSerwist(nextConfig);
-  }
-
-  return nextConfig;
-};
 ```
 
   </Tab>
 </Tabs>
 
-### Step 2: Update tsconfig.json
+### Step 2: Update build scripts
 
-If you use TypeScript, add the following content to tsconfig.json in order to get the correct types:
+Change your build scripts like so in package.json:
 
-<Tabs id="updating-tsconfig" tabs={[["tsconfig.json", "tsconfig-json"]]}>
-  <Tab id="tsconfig-json">
+<Tabs id="updating-package-json" tabs={[["package.json", "package-json"]]}>
+  <Tab id="package-json">
 
 ```json
 {
-  // Other stuff...
-  "compilerOptions": {
-    // Other options...
-    "types": [
-      // Other types...
-      // This allows Serwist to type `window.serwist`.
-      "@serwist/next/typings"
-    ],
-    "lib": [
-      // Other libs...
-      // Add this! Doing so adds WebWorker and ServiceWorker types to the global.
-      "webworker"
-    ],
-  },
-  "exclude": ["public/sw.js"]
+  "scripts": {
+    // If you don't need the service worker in development, you can set `disable` in `SerwistProvider`
+    // (see below) to `process.env.NODE_ENV === "development"` instead.
+    "dev": "concurrently -p none 'serwist build --watch' 'next dev'",
+    // Alternatively, build the service worker just once before starting the development server.
+    "dev:once": "cross-env NODE_ENV=development serwist build && next dev",
+    // Add `serwist build` to your build command.
+    "build": "next build && serwist build"
+  }
 }
 ```
 
   </Tab>
 </Tabs>
-
-Otherwise, safely skip this step.
 
 ### Step 3: Update .gitignore
 
@@ -215,6 +145,9 @@ Here is a basic service worker template to get Serwist up and running:
   <Tab id="sw-ts">
 
 ```typescript twoslash
+/// <reference no-default-lib="true" />
+/// <reference lib="esnext" />
+/// <reference lib="webworker" />
 import { defaultCache } from "@serwist/next/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
 import { Serwist } from "serwist";
@@ -290,7 +223,7 @@ Update app/manifest.json (App Router) or public/manifest.json (Pages Router) wit
   </Tab>
 </Tabs>
 
-### Step 6: Add metadata
+### Step 6: Add metadata and SerwistProvider
 
 Add the following content to app/layout.tsx and/or pages/\_app.tsx:
 
@@ -298,8 +231,13 @@ Add the following content to app/layout.tsx and/or pages/\_app.tsx:
   <Tab id="app-layout-tsx">
 
 ```tsx
+// app/serwist.ts
+"use client";
+export { SerwistProvider } from "@serwist/next/react";
+// app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { SerwistProvider } from "./serwist";
 
 const APP_NAME = "PWA App";
 const APP_DEFAULT_TITLE = "My Awesome PWA App";
@@ -349,7 +287,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" dir="ltr">
       <head />
-      <body>{children}</body>
+      <body>
+        <SerwistProvider swUrl="/sw.js" /* disable={process.env.NODE_ENV === "development"} */>
+          {children}
+        </SerwistProvider>
+      </body>
     </html>
   );
 }
@@ -359,6 +301,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   <Tab id="pages-app-tsx">
 
 ```tsx
+import { SerwistProvider } from "@serwist/next/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
@@ -438,7 +381,9 @@ export default function App({ Component, pageProps }: AppProps) {
           sizes="640x1136"
         />
       </Head>
-      <Component {...pageProps} />
+      <SerwistProvider swUrl="/sw.js" /* disable={process.env.NODE_ENV === "development"} */>
+        <Component {...pageProps} />
+      </SerwistProvider>
     </>
   );
 }

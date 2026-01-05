@@ -395,6 +395,7 @@ export const DOCS_SIDEBAR_LINKS = [
     children: [
       { title: "Getting started", href: "/docs/next/getting-started" },
       { title: "Turbopack", href: "/docs/next/turbo" },
+      { title: "Configurator mode", href: "/docs/next/config" },
       {
         title: "Configuring",
         href: "/docs/next/configuring",
