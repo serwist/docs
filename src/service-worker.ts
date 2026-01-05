@@ -1,5 +1,5 @@
-import { defaultCache } from "@serwist/vite/worker";
-import { type PrecacheEntry, Serwist, CacheFirst, ExpirationPlugin, CacheableResponsePlugin, RangeRequestsPlugin } from "serwist";
+import { defaultCache } from "@serwist/svelte/worker";
+import { CacheableResponsePlugin, CacheFirst, ExpirationPlugin, type PrecacheEntry, RangeRequestsPlugin, Serwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope {

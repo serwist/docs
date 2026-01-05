@@ -159,7 +159,6 @@ If you use Git, update your .gitignore like so:
 ```sh
 # Serwist
 public/sw*
-public/swe-worker*
 ```
 
   </Tab>

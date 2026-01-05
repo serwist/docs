@@ -2,8 +2,9 @@
   import "$components/TwoslashHover.svelte";
   import "../app.css";
 
+  import { useSerwist } from "@serwist/svelte/client";
+
   import { mount, unmount } from "svelte";
-  import { getSerwist } from "virtual:serwist";
 
   import { dev } from "$app/environment";
   import { page } from "$app/state";
@@ -17,6 +18,8 @@
   const title = $derived(page.data.title ? `${page.data.title} - Serwist` : "Serwist");
   const ogImage = $derived(page.data.ogImage ?? data.fallbackOgImage);
 
+  const { serwist } = useSerwist("/service-worker.js", { type: dev ? "module" : "classic" });
+
   $effect(() => {
     const twoslashElement = mount(Twoslash, {
       target: document.getElementById("root-container")!,
@@ -26,16 +29,12 @@
   });
 
   $effect(() => {
-    const registerSerwist = async () => {
-      if (!dev && "serviceWorker" in navigator) {
-        const serwist = await getSerwist();
-        serwist?.addEventListener("installed", () => {
-          console.log("Serwist installed!");
-        });
-        void serwist?.register();
-      }
-    };
-    registerSerwist();
+    if (!dev && serwist) {
+      serwist.addEventListener("installed", () => {
+        console.log("Serwist installed!");
+      });
+      void serwist.register();
+    }
   });
 
   $effect(() => {
