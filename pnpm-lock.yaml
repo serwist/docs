@@ -18,32 +18,32 @@ importers:
         specifier: 2.6.2
         version: 2.6.2
       '@serwist/build':
-        specifier: 9.4.3
-        version: 9.4.3(typescript@5.9.3)
+        specifier: 9.4.4
+        version: 9.4.4(typescript@5.9.3)
       '@serwist/cli':
-        specifier: 9.4.3
-        version: 9.4.3(@types/node@25.0.3)(esbuild@0.27.2)(typescript@5.9.3)
+        specifier: 9.4.4
+        version: 9.4.4(@types/node@25.0.3)(esbuild@0.27.2)(typescript@5.9.3)
       '@serwist/next':
-        specifier: 9.4.3
-        version: 9.4.3(@serwist/cli@9.4.3(@types/node@25.0.3)(esbuild@0.27.2)(typescript@5.9.3))(next@16.1.1(@babel/core@7.28.5)(react-dom@19.1.0(react@19.2.3))(react@19.2.3))(react@19.2.3)(typescript@5.9.3)(webpack@5.104.1(esbuild@0.27.2))
+        specifier: 9.4.4
+        version: 9.4.4(@serwist/cli@9.4.4(@types/node@25.0.3)(esbuild@0.27.2)(typescript@5.9.3))(next@16.1.1(@babel/core@7.28.5)(react-dom@19.1.0(react@19.2.3))(react@19.2.3))(react@19.2.3)(typescript@5.9.3)(webpack@5.104.1(esbuild@0.27.2))
       '@serwist/nuxt':
-        specifier: 9.4.3
-        version: 9.4.3(magicast@0.5.1)(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))
+        specifier: 9.4.4
+        version: 9.4.4(magicast@0.5.1)(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))
       '@serwist/svelte':
-        specifier: 9.4.3
-        version: 9.4.3(@sveltejs/kit@2.49.2(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.46.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)))(svelte@5.46.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)))(typescript@5.9.3)
+        specifier: 9.4.4
+        version: 9.4.4(@sveltejs/kit@2.49.2(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.46.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)))(svelte@5.46.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)))(typescript@5.9.3)
       '@serwist/turbopack':
-        specifier: 9.4.3
-        version: 9.4.3(esbuild-wasm@0.27.2)(next@16.1.1(@babel/core@7.28.5)(react-dom@19.1.0(react@19.2.3))(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
+        specifier: 9.4.4
+        version: 9.4.4(esbuild-wasm@0.27.2)(next@16.1.1(@babel/core@7.28.5)(react-dom@19.1.0(react@19.2.3))(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
       '@serwist/vite':
-        specifier: 9.4.3
-        version: 9.4.3(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))
+        specifier: 9.4.4
+        version: 9.4.4(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))
       '@serwist/webpack-plugin':
-        specifier: 9.4.3
-        version: 9.4.3(typescript@5.9.3)(webpack@5.104.1(esbuild@0.27.2))
+        specifier: 9.4.4
+        version: 9.4.4(typescript@5.9.3)(webpack@5.104.1(esbuild@0.27.2))
       '@serwist/window':
-        specifier: 9.4.3
-        version: 9.4.3(typescript@5.9.3)
+        specifier: 9.4.4
+        version: 9.4.4(typescript@5.9.3)
       '@shikijs/twoslash':
         specifier: 3.20.0
         version: 3.20.0(typescript@5.9.3)
@@ -168,8 +168,8 @@ importers:
         specifier: 0.18.3
         version: 0.18.3
       serwist:
-        specifier: 9.4.3
-        version: 9.4.3(typescript@5.9.3)
+        specifier: 9.4.4
+        version: 9.4.4(typescript@5.9.3)
       shiki:
         specifier: 3.20.0
         version: 3.20.0
@@ -2173,8 +2173,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@serwist/build@9.4.3':
-    resolution: {integrity: sha512-RKvJ/6B3tzju+E8F2RF7HX8BjttIyneQ6xGK4BF1ymdawtI27TLIlYZgVBMiV3KTtONxrDQNn/a2yWLnA4MsjA==}
+  '@serwist/build@9.4.4':
+    resolution: {integrity: sha512-qd5/XyKMXM1ipFYO503et+07xvQGJFjhrExVuOWr6mHV7KKGLUJjs6VEti57Tv0wJDkBOS7i1jW5fSrEMnFFug==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: '>=5.0.0'
@@ -2182,8 +2182,8 @@ packages:
       typescript:
         optional: true
 
-  '@serwist/cli@9.4.3':
-    resolution: {integrity: sha512-xb23qwdLwfUJLaml+eFSnbfXQKj2JZ5U6Cq4aR5xvI7bYFe71cIAxgXJzjEktmv3JDn1sosUV6RBmc2gkjzYVQ==}
+  '@serwist/cli@9.4.4':
+    resolution: {integrity: sha512-SjiHdQRCxGS8DT2bF15zOBdrEflCmqNQqLevg+5NsSeuwZLy3DW48Wsqsna/oA1WGH32a/50Mtbyw5JeMNJivw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     peerDependencies:
@@ -2192,11 +2192,11 @@ packages:
       esbuild:
         optional: true
 
-  '@serwist/next@9.4.3':
-    resolution: {integrity: sha512-XhujvUYizdn/g7442huSpJdkEeQz9ODaXFq6Ehr0Z5BBfKZ0WplUEgYbiZRdVhZ87a8ryZX30cquVFdpvbKahA==}
+  '@serwist/next@9.4.4':
+    resolution: {integrity: sha512-C4H9G+RJVhuPqUAaT++RbAOBtuBc2zpuieLeZxTVyiASrwhDWEp+v+qBDDzY8dCuQobsq7UO26FltJrXleGOZw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      '@serwist/cli': ^9.4.3
+      '@serwist/cli': ^9.4.4
       next: '>=14.0.0'
       react: '>=18.0.0'
       typescript: '>=5.0.0'
@@ -2206,8 +2206,8 @@ packages:
       typescript:
         optional: true
 
-  '@serwist/nuxt@9.4.3':
-    resolution: {integrity: sha512-0LTNWVtB0zCrI+rFSNJ2Y1FQGcPiuVyxoCucS6LAa4VHTmOj7cp4oIKEsz8qMdzw4ihNxjQxTuKyNHI3+G7rWg==}
+  '@serwist/nuxt@9.4.4':
+    resolution: {integrity: sha512-QmjFq0inoKHNmnlijPlFcc8VKK0MhBMDGGTBtbpkMtbdRVlhs93KEFNZqzcZChSG24x0UJwwPvEXNcYhvmbSCg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: '>=5.0.0'
@@ -2216,8 +2216,8 @@ packages:
       typescript:
         optional: true
 
-  '@serwist/svelte@9.4.3':
-    resolution: {integrity: sha512-7A/EhzIz0jb/LCWYO8c/GkcisCU2dBcW+OuZi8uSYPm9RoX2xB7QXLtApWPjZ0FklQDfIKTaaVfipyPmnAE0Bw==}
+  '@serwist/svelte@9.4.4':
+    resolution: {integrity: sha512-ESHWA1MDaMZ0hnss3HJjD4icxjG0xYZ4eYc/0EV9rlVssK5dXoa28tQU3gRL313SDFHI8CvW/aCQ5rJoGfp9Vw==}
     peerDependencies:
       '@sveltejs/kit': '>=2.0.0'
       typescript: '>=5.0.0'
@@ -2225,8 +2225,8 @@ packages:
       typescript:
         optional: true
 
-  '@serwist/turbopack@9.4.3':
-    resolution: {integrity: sha512-PSJwd6kSEdTbWoYb8KUC2HgpgMnvt+qDsWYjam87CZFFM0cBcK0VBhqNQzfs/gHi2CMb5ObrhDHZ5dXWh7TTBw==}
+  '@serwist/turbopack@9.4.4':
+    resolution: {integrity: sha512-cYedQmAw50fk4PkjlXaYlajsH9AOO0bwK06dJBbUSB6HC3i8x9hcjJi+4Wl9FdRZe7dxu3smk42JeVnLK3ItsQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       esbuild-wasm: '>=0.25.0 <1.0.0'
@@ -2237,11 +2237,11 @@ packages:
       typescript:
         optional: true
 
-  '@serwist/utils@9.4.3':
-    resolution: {integrity: sha512-j3LqAm7TxEfu0pTo8pCGIcg74AeJ3CYZ5aBIyNV1AE5Pe5yiLFrQAnuFQ7YcyUODFfDmRr799gLfDXQ0yot26Q==}
+  '@serwist/utils@9.4.4':
+    resolution: {integrity: sha512-esgNORd4ihQC5FAOaHRsAt0E6h7cYfsZvACWMotwIqcC+Cw0Q1NDoTg8hKV1sJ9Sc1UKA0SF3jyaWRPnlKTsGQ==}
 
-  '@serwist/vite@9.4.3':
-    resolution: {integrity: sha512-9FLoZhJ6GAZ/gLWHWKqBGmzshNcepLDz3/cGCpzPkplHjvALZef+3Ki1Y1ncrOeMhKoh+Cb3J9OAs/wxtHrxWg==}
+  '@serwist/vite@9.4.4':
+    resolution: {integrity: sha512-1O1MpDn7iJw3vTgLhSUvRqT2hiaANhXa9FE3FXLzOeIX/QAHf644kiO4N4Y+6A+TgbD+ZOyLtVnGOpG51Lb2Og==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: '>=5.0.0'
@@ -2250,8 +2250,8 @@ packages:
       typescript:
         optional: true
 
-  '@serwist/webpack-plugin@9.4.3':
-    resolution: {integrity: sha512-n7OLkwm+AU+9oQh+C2Irx57ofeb+FHEZKqBHcecYXHv0mV6oOcAP3+BrlUkMGRJHSLS2u6Lb2glIgx0m+LWs4A==}
+  '@serwist/webpack-plugin@9.4.4':
+    resolution: {integrity: sha512-4FeUyw2CaGA9BkCs1Pst0kMXZ7xrYx4K1ZDKfH9w7alIIPDoTnV2YmrNCjptqhkLFVB3ErZRy4Un716YzYx3Qw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       typescript: '>=5.0.0'
@@ -2262,8 +2262,8 @@ packages:
       webpack:
         optional: true
 
-  '@serwist/window@9.4.3':
-    resolution: {integrity: sha512-bG5UawhetBNKRoQVYr8cpbK0xy9pPDqCKC7JM+qDmj5TFUJ9SZF3aw1zpQi38GXm9BRcNEAVWsuuOIjxprEZpA==}
+  '@serwist/window@9.4.4':
+    resolution: {integrity: sha512-NA7/r5njJ77gsnuTPQoGLokdYB73exnp2kao4bjcRtKL0ZBFHK6D7BtaCTfx2qQiQAbqQy7pLv0ARfsUu4bYkQ==}
     peerDependencies:
       typescript: '>=5.0.0'
     peerDependenciesMeta:
@@ -5513,8 +5513,8 @@ packages:
     resolution: {integrity: sha512-61g9pCh0Vnh7IutZjtLGGpTA355+OPn2TyDv/6ivP2h/AdAVX9azsoxmg2/M6nZeQZNYBEwIcsne1mJd9oQItQ==}
     engines: {node: '>= 18'}
 
-  serwist@9.4.3:
-    resolution: {integrity: sha512-SZ0uOa0xJGRKsKPpLu0QYtqIYmsgZUYT2ekkr9i+aRLoakGTdU98M1AiL4wVC2P5vL5YmUWB4l7cM7sSkH/gBA==}
+  serwist@9.4.4:
+    resolution: {integrity: sha512-MrsVo5ruv8De4zRphWRyBh2XnQNtSplVg4NR1j4RNoQrjECMLncxYUirnJqkplBH7CA5IIUl+mlsKs4uD5JjiA==}
     peerDependencies:
       typescript: '>=5.0.0'
     peerDependenciesMeta:
@@ -8186,9 +8186,9 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.54.0':
     optional: true
 
-  '@serwist/build@9.4.3(typescript@5.9.3)':
+  '@serwist/build@9.4.4(typescript@5.9.3)':
     dependencies:
-      '@serwist/utils': 9.4.3
+      '@serwist/utils': 9.4.4
       common-tags: 1.8.2
       glob: 10.5.0
       pretty-bytes: 6.1.1
@@ -8197,11 +8197,11 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.3
 
-  '@serwist/cli@9.4.3(@types/node@25.0.3)(esbuild@0.27.2)(typescript@5.9.3)':
+  '@serwist/cli@9.4.4(@types/node@25.0.3)(esbuild@0.27.2)(typescript@5.9.3)':
     dependencies:
       '@inquirer/prompts': 8.1.0(@types/node@25.0.3)
-      '@serwist/build': 9.4.3(typescript@5.9.3)
-      '@serwist/utils': 9.4.3
+      '@serwist/build': 9.4.4(typescript@5.9.3)
+      '@serwist/utils': 9.4.4
       chalk: 5.6.2
       chokidar: 5.0.0
       common-tags: 1.8.2
@@ -8217,92 +8217,92 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@serwist/next@9.4.3(@serwist/cli@9.4.3(@types/node@25.0.3)(esbuild@0.27.2)(typescript@5.9.3))(next@16.1.1(@babel/core@7.28.5)(react-dom@19.1.0(react@19.2.3))(react@19.2.3))(react@19.2.3)(typescript@5.9.3)(webpack@5.104.1(esbuild@0.27.2))':
+  '@serwist/next@9.4.4(@serwist/cli@9.4.4(@types/node@25.0.3)(esbuild@0.27.2)(typescript@5.9.3))(next@16.1.1(@babel/core@7.28.5)(react-dom@19.1.0(react@19.2.3))(react@19.2.3))(react@19.2.3)(typescript@5.9.3)(webpack@5.104.1(esbuild@0.27.2))':
     dependencies:
-      '@serwist/build': 9.4.3(typescript@5.9.3)
-      '@serwist/utils': 9.4.3
-      '@serwist/webpack-plugin': 9.4.3(typescript@5.9.3)(webpack@5.104.1(esbuild@0.27.2))
-      '@serwist/window': 9.4.3(typescript@5.9.3)
+      '@serwist/build': 9.4.4(typescript@5.9.3)
+      '@serwist/utils': 9.4.4
+      '@serwist/webpack-plugin': 9.4.4(typescript@5.9.3)(webpack@5.104.1(esbuild@0.27.2))
+      '@serwist/window': 9.4.4(typescript@5.9.3)
       browserslist: 4.28.1
       glob: 10.5.0
       kolorist: 1.8.0
       next: 16.1.1(@babel/core@7.28.5)(react-dom@19.1.0(react@19.2.3))(react@19.2.3)
       react: 19.2.3
       semver: 7.7.3
-      serwist: 9.4.3(typescript@5.9.3)
+      serwist: 9.4.4(typescript@5.9.3)
       zod: 4.2.1
     optionalDependencies:
-      '@serwist/cli': 9.4.3(@types/node@25.0.3)(esbuild@0.27.2)(typescript@5.9.3)
+      '@serwist/cli': 9.4.4(@types/node@25.0.3)(esbuild@0.27.2)(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
       - webpack
 
-  '@serwist/nuxt@9.4.3(magicast@0.5.1)(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))':
+  '@serwist/nuxt@9.4.4(magicast@0.5.1)(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))':
     dependencies:
       '@nuxt/kit': 4.2.2(magicast@0.5.1)
-      '@serwist/build': 9.4.3(typescript@5.9.3)
-      '@serwist/utils': 9.4.3
-      '@serwist/vite': 9.4.3(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))
-      '@serwist/window': 9.4.3(typescript@5.9.3)
+      '@serwist/build': 9.4.4(typescript@5.9.3)
+      '@serwist/utils': 9.4.4
+      '@serwist/vite': 9.4.4(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))
+      '@serwist/window': 9.4.4(typescript@5.9.3)
       vite: 7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)
     optionalDependencies:
       typescript: 5.9.3
     transitivePeerDependencies:
       - magicast
 
-  '@serwist/svelte@9.4.3(@sveltejs/kit@2.49.2(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.46.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)))(svelte@5.46.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)))(typescript@5.9.3)':
+  '@serwist/svelte@9.4.4(@sveltejs/kit@2.49.2(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.46.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)))(svelte@5.46.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)))(typescript@5.9.3)':
     dependencies:
       '@sveltejs/kit': 2.49.2(@sveltejs/vite-plugin-svelte@6.2.1(svelte@5.46.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)))(svelte@5.46.1)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))
-      serwist: 9.4.3(typescript@5.9.3)
+      serwist: 9.4.4(typescript@5.9.3)
     optionalDependencies:
       typescript: 5.9.3
 
-  '@serwist/turbopack@9.4.3(esbuild-wasm@0.27.2)(next@16.1.1(@babel/core@7.28.5)(react-dom@19.1.0(react@19.2.3))(react@19.2.3))(react@19.2.3)(typescript@5.9.3)':
+  '@serwist/turbopack@9.4.4(esbuild-wasm@0.27.2)(next@16.1.1(@babel/core@7.28.5)(react-dom@19.1.0(react@19.2.3))(react@19.2.3))(react@19.2.3)(typescript@5.9.3)':
     dependencies:
-      '@serwist/build': 9.4.3(typescript@5.9.3)
-      '@serwist/utils': 9.4.3
-      '@serwist/window': 9.4.3(typescript@5.9.3)
+      '@serwist/build': 9.4.4(typescript@5.9.3)
+      '@serwist/utils': 9.4.4
+      '@serwist/window': 9.4.4(typescript@5.9.3)
       '@swc/core': 1.15.7
       esbuild-wasm: 0.27.2
       kolorist: 1.8.0
       next: 16.1.1(@babel/core@7.28.5)(react-dom@19.1.0(react@19.2.3))(react@19.2.3)
       react: 19.2.3
       semver: 7.7.3
-      serwist: 9.4.3(typescript@5.9.3)
+      serwist: 9.4.4(typescript@5.9.3)
       zod: 4.2.1
     optionalDependencies:
       typescript: 5.9.3
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  '@serwist/utils@9.4.3': {}
+  '@serwist/utils@9.4.4': {}
 
-  '@serwist/vite@9.4.3(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))':
+  '@serwist/vite@9.4.4(typescript@5.9.3)(vite@7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2))':
     dependencies:
-      '@serwist/build': 9.4.3(typescript@5.9.3)
-      '@serwist/utils': 9.4.3
+      '@serwist/build': 9.4.4(typescript@5.9.3)
+      '@serwist/utils': 9.4.4
       glob: 10.5.0
       kolorist: 1.8.0
-      serwist: 9.4.3(typescript@5.9.3)
+      serwist: 9.4.4(typescript@5.9.3)
       vite: 7.3.0(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.8.2)
       zod: 4.2.1
     optionalDependencies:
       typescript: 5.9.3
 
-  '@serwist/webpack-plugin@9.4.3(typescript@5.9.3)(webpack@5.104.1(esbuild@0.27.2))':
+  '@serwist/webpack-plugin@9.4.4(typescript@5.9.3)(webpack@5.104.1(esbuild@0.27.2))':
     dependencies:
-      '@serwist/build': 9.4.3(typescript@5.9.3)
-      '@serwist/utils': 9.4.3
+      '@serwist/build': 9.4.4(typescript@5.9.3)
+      '@serwist/utils': 9.4.4
       pretty-bytes: 6.1.1
       zod: 4.2.1
     optionalDependencies:
       typescript: 5.9.3
       webpack: 5.104.1(esbuild@0.27.2)
 
-  '@serwist/window@9.4.3(typescript@5.9.3)':
+  '@serwist/window@9.4.4(typescript@5.9.3)':
     dependencies:
       '@types/trusted-types': 2.0.7
-      serwist: 9.4.3(typescript@5.9.3)
+      serwist: 9.4.4(typescript@5.9.3)
     optionalDependencies:
       typescript: 5.9.3
 
@@ -11935,9 +11935,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  serwist@9.4.3(typescript@5.9.3):
+  serwist@9.4.4(typescript@5.9.3):
     dependencies:
-      '@serwist/utils': 9.4.3
+      '@serwist/utils': 9.4.4
       idb: 8.0.3
     optionalDependencies:
       typescript: 5.9.3
