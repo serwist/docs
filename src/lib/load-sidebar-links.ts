@@ -3,7 +3,7 @@ import type { SidebarGroup } from "./types";
 /**
  * Determines sidebar links based on the second path
  * segment.
- * @param sidebarType 
+ * @param sidebarType
  * @returns The sidebar links used for this segment
  */
 export const loadSidebarLinks = (sidebarType: string | null | undefined): SidebarGroup[] => {
@@ -443,38 +443,14 @@ export const loadSidebarLinks = (sidebarType: string | null | undefined): Sideba
         {
           title: "Packages",
           children: [
-            {
-              title: "serwist",
-              href: "/docs/serwist",
-            },
-            {
-              title: "@serwist/build",
-              href: "/docs/build",
-            },
-            {
-              title: "@serwist/cli",
-              href: "/docs/cli",
-            },
-            {
-              title: "@serwist/next",
-              href: "/docs/next",
-            },
-            {
-              title: "@serwist/nuxt",
-              href: "/docs/nuxt",
-            },
-            {
-              title: "vite-plugin-serwist",
-              href: "/docs/vite",
-            },
-            {
-              title: "@serwist/webpack-plugin",
-              href: "/docs/webpack-plugin",
-            },
-            {
-              title: "@serwist/window",
-              href: "/docs/window",
-            },
+            { title: "serwist", href: "/docs/serwist" },
+            { title: "@serwist/build", href: "/docs/build" },
+            { title: "@serwist/cli", href: "/docs/cli" },
+            { title: "@serwist/window", href: "/docs/window" },
+            { title: "@serwist/next", href: "/docs/next" },
+            { title: "@serwist/nuxt", href: "/docs/nuxt" },
+            { title: "vite-plugin-serwist", href: "/docs/vite" },
+            { title: "@serwist/webpack-plugin", href: "/docs/webpack-plugin" },
           ],
         },
       ];

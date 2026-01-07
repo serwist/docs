@@ -14,11 +14,11 @@ Take a look around:
 * [`serwist`](/docs/serwist)
 * [`@serwist/build`](/docs/build)
 * [`@serwist/cli`](/docs/cli)
+* [`@serwist/window`](/docs/window)
 * [`@serwist/next`](/docs/next)
 * [`@serwist/nuxt`](/docs/nuxt)
 * [`vite-plugin-serwist`](/docs/vite)
 * [`@serwist/webpack-plugin`](/docs/webpack-plugin)
-* [`@serwist/window`](/docs/window)
 
 ## Alternatives
 

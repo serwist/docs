@@ -135,13 +135,13 @@ export const BLOG_ENTRIES = [
   },
 ] satisfies BlogEntry[];
 
-export const MAP_PATH_TO_PACKAGE: Record<string, [string, Component<SVGAttributes<SVGElement>>]> = {
+export const MAP_PATH_TO_PACKAGE: Record<string, [string, Component<SVGAttributes<SVGElement>>, hideInMenu?: boolean]> = {
   serwist: ["serwist", LogoSerwist],
-  build: ["@serwist/build", LogoSerwist],
-  cli: ["@serwist/cli", LogoSerwist],
+  build: ["@serwist/build", LogoSerwist, true],
+  cli: ["@serwist/cli", LogoSerwist, true],
+  window: ["@serwist/window", LogoSerwist, true],
   next: ["@serwist/next", LogoNextjs],
   nuxt: ["@serwist/nuxt", LogoNuxt],
   vite: ["vite-plugin-serwist", LogoVite],
   "webpack-plugin": ["@serwist/webpack-plugin", LogoWebpack],
-  window: ["@serwist/window", LogoSerwist],
 };

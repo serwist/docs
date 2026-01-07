@@ -57,7 +57,7 @@
     tabindex="-1"
   >
     <div class="space-y-1 p-1" role="none">
-      {#each Object.entries(MAP_PATH_TO_PACKAGE) as [path, [packageName, Icon]] (path)}
+      {#each Object.entries(MAP_PATH_TO_PACKAGE) as [path, [packageName, Icon, hideInMenu]] (path)}
         {@const isActive = path === activePath}
         <a
           href="/docs/{path}"
@@ -69,7 +69,11 @@
           tabindex="-1"
           id="menu-item-{path}"
         >
-          <span class="mr-2 size-4"><Icon height={16} aria-hidden="true" tabindex={-1} /></span>
+          <span class="mr-2 size-4">
+            {#if !hideInMenu}
+              <Icon height={16} aria-hidden="true" tabindex={-1} />
+            {/if}
+          </span>
           {packageName}
         </a>
       {/each}
