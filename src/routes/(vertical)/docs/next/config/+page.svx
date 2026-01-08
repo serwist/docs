@@ -118,6 +118,7 @@ export default serwist.withNextConfig((nextConfig) => ({
   globIgnores: [
     `${nextConfig.distDir}/server/pages/**/*.json`,
     `${nextConfig.distDir}/server/app/ignored.html`,
+    `${nextConfig.distDir}/server/app/_global-error*`
   ],
 }));
 ```
