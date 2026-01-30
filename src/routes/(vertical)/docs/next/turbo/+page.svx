@@ -24,28 +24,28 @@ Run the following command:
   <Tab id="npm">
 
 ```bash
-npm i -D @serwist/turbopack esbuild-wasm serwist
+npm i -D @serwist/turbopack esbuild serwist
 ```
 
   </Tab>
   <Tab id="yarn">
 
 ```bash
-yarn add -D @serwist/turbopack esbuild-wasm serwist
+yarn add -D @serwist/turbopack esbuild serwist
 ```
 
   </Tab>
   <Tab id="pnpm">
 
 ```bash
-pnpm add -D @serwist/turbopack esbuild-wasm serwist
+pnpm add -D @serwist/turbopack esbuild serwist
 ```
 
   </Tab>
   <Tab id="bun">
 
 ```bash
-bun add -D @serwist/turbopack esbuild-wasm serwist
+bun add -D @serwist/turbopack esbuild serwist
 ```
 
   </Tab>
@@ -61,12 +61,11 @@ Update or create your Next.js configuration file with the following content:
   <Tab id="next-config-mjs">
 
 ```javascript twoslash
-/** @type {import("next").NextConfig} */
-const nextConfig = {
-  serverExternalPackages: ["esbuild-wasm"],
-};
+import { withSerwist } from "@serwist/turbopack";
 
-export default nextConfig;
+export default withSerwist({
+  cacheComponents: true,
+});
 ```
 
   </Tab>
@@ -80,20 +79,37 @@ Add the following route to enable Serwist:
   <Tab id="app-serwist-path-route-ts">
 
 ```ts twoslash
+// @filename: next-config.d.ts
+declare module "$cwd/next.config.mjs" {
+  import type { NextConfig } from "next";
+  const nextConfig: NextConfig;
+  export default nextConfig;
+}
+// @filename: route.ts
+// @lib: esnext
+// @types: ./next-config.d.ts
+// ---cut-before---
 import { spawnSync } from "node:child_process";
 import { createSerwistRoute } from "@serwist/turbopack";
+// Import your Next.js configuration so that
+// Serwist can configure the service worker
+// according to your options.
+import nextConfig from "$cwd/next.config.mjs";
 
-// Using `git rev-parse HEAD` might not the most efficient
-// way of determining a revision. You may prefer to use
+// This is optional!
+// A revision helps Serwist version a precached page. This
+// avoids outdated precached responses being used. Using
+// `git rev-parse HEAD` might not the most efficient way
+// of determining a revision, however. You may prefer to use
 // the hashes of every extra file you precache.
 const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
 
 export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } = createSerwistRoute({
   additionalPrecacheEntries: [{ url: "/~offline", revision }],
   swSrc: "app/sw.ts",
-  // Copy relevant Next.js configuration (assetPrefix,
-  // basePath, distDir) over if you've changed them.
-  nextConfig: {},
+  nextConfig,
+  // If set to `false`, Serwist will attempt to use `esbuild-wasm`.
+  useNativeEsbuild: true,
 });
 ```
 
