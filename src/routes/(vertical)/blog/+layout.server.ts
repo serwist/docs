@@ -1,5 +1,5 @@
-import { encodeOpenGraph } from "$lib/encode-open-graph";
 import { BLOG_ENTRIES } from "$lib/constants";
+import { encodeOpenGraph } from "$lib/encode-open-graph";
 import type { LayoutServerLoad } from "./$types";
 
 export const load: LayoutServerLoad = ({ url }) => {
@@ -7,10 +7,7 @@ export const load: LayoutServerLoad = ({ url }) => {
   return {
     ...(metadata && {
       title: `${metadata.title.content} - Blog`,
-      ogImage: encodeOpenGraph({
-        title: metadata.title.content,
-        desc: "Blog",
-      }),
+      ogImage: encodeOpenGraph(metadata.title.content, "Blog"),
     }),
   };
 };

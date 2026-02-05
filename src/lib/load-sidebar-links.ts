@@ -247,6 +247,10 @@ export const loadSidebarLinks = (sidebarType: string | null | undefined): Sideba
               href: "/docs/next/turbo",
             },
             {
+              title: "Configurator mode",
+              href: "/docs/next/config",
+            },
+            {
               title: "Worker exports",
               href: "/docs/next/worker-exports",
             },

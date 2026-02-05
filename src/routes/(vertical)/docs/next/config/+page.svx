@@ -1,5 +1,7 @@
 ---
 layout: docs
+title: "Configurator mode"
+footer: "@serwist/next"
 ---
 <script>
   import Callout from "$components/callout.svelte";
