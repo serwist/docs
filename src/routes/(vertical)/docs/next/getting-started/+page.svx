@@ -63,8 +63,11 @@ Update or create your Next.js configuration file with the following content:
 import { spawnSync } from "node:child_process";
 import withSerwistInit from "@serwist/next";
 
-// Using `git rev-parse HEAD` might not the most efficient
-// way of determining a revision. You may prefer to use
+// This is optional!
+// A revision helps Serwist version a precached page. This
+// avoids outdated precached responses being used. Using
+// `git rev-parse HEAD` might not the most efficient way
+// of determining a revision, however. You may prefer to use
 // the hashes of every extra file you precache.
 const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
 
@@ -99,8 +102,11 @@ export default async (phase) => {
   const nextConfig = {};
 
   if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    // Using `git rev-parse HEAD` might not the most efficient
-    // way of determining a revision. You may prefer to use
+    // This is optional!
+    // A revision helps Serwist version a precached page. This
+    // avoids outdated precached responses being used. Using
+    // `git rev-parse HEAD` might not the most efficient way
+    // of determining a revision, however. You may prefer to use
     // the hashes of every extra file you precache.
     const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
 
@@ -133,8 +139,11 @@ module.exports = async (phase) => {
   const nextConfig = {};
 
   if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    // Using `git rev-parse HEAD` might not the most efficient
-    // way of determining a revision. You may prefer to use
+    // This is optional!
+    // A revision helps Serwist version a precached page. This
+    // avoids outdated precached responses being used. Using
+    // `git rev-parse HEAD` might not the most efficient way
+    // of determining a revision, however. You may prefer to use
     // the hashes of every extra file you precache.
     const { spawnSync } = require("node:child_process");
     const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
@@ -208,7 +217,7 @@ Otherwise, safely skip this step.
 
 ### Step 4: Create a service worker
 
-Basic service worker template to get Serwist up and running:
+Here is a basic service worker template to get Serwist up and running:
 
 <Tabs id="writing-a-sw" tabs={[["sw.ts", "sw-ts"]]}>
   <Tab id="sw-ts">
@@ -283,7 +292,7 @@ Update app/manifest.json (App Router) or public/manifest.json (Pages Router) wit
 
 ### Step 6: Add metadata
 
-Add the following content to app/layout.tsx or pages/\_app.tsx:
+Add the following content to app/layout.tsx and/or pages/\_app.tsx:
 
 <Tabs id="updating-layout" tabs={[["app/layout.tsx", "app-layout-tsx"], ["pages/_app.tsx", "pages-app-tsx"]]}>
   <Tab id="app-layout-tsx">

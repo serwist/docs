@@ -44,7 +44,7 @@ pnpm add -D @serwist/turbopack esbuild-wasm serwist
   <Tab id="bun">
 
 ```bash
-bun add -D @serwist/turbopack esbuild-wasm serwist
+bun add -D @serwist/turbopack esbuild serwist
 ```
 
   </Tab>
@@ -79,8 +79,22 @@ Add the following route to enable Serwist:
   <Tab id="app-serwist-path-route-ts">
 
 ```ts twoslash
+// @filename: next-config.d.ts
+declare module "$cwd/next.config.mjs" {
+  import type { NextConfig } from "next";
+  const nextConfig: NextConfig;
+  export default nextConfig;
+}
+// @filename: route.ts
+// @lib: esnext
+// @types: ./next-config.d.ts
+// ---cut-before---
 import { spawnSync } from "node:child_process";
 import { createSerwistRoute } from "@serwist/turbopack";
+// Import your Next.js configuration so that
+// Serwist can configure the service worker
+// according to your options.
+import nextConfig from "$cwd/next.config.mjs";
 
 // A revision helps Serwist version a precached page. This
 // avoids outdated precached responses being used. Using
@@ -92,9 +106,7 @@ const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).
 export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } = createSerwistRoute({
   additionalPrecacheEntries: [{ url: "/precached", revision }],
   swSrc: "app/sw.ts",
-  // Copy relevant Next.js configuration (assetPrefix,
-  // basePath, distDir) over if you've changed them.
-  nextConfig: {},
+  nextConfig,
 });
 ```
 
@@ -103,12 +115,15 @@ export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } =
 
 ### Step 3: Create a service worker
 
-Basic service worker template to get Serwist up and running:
+Here is a basic service worker template to get Serwist up and running:
 
 <Tabs id="writing-a-sw" tabs={[["app/sw.ts", "app-sw-ts"]]}>
   <Tab id="app-sw-ts">
 
 ```typescript twoslash
+/// <reference no-default-lib="true" />
+/// <reference lib="esnext" />
+/// <reference lib="webworker" />
 import { defaultCache } from "@serwist/turbopack/worker";
 import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
 import { addEventListeners, createSerwist, RuntimeCache } from "serwist";
@@ -190,21 +205,21 @@ Update app/manifest.json (App Router) or public/manifest.json (Pages Router) wit
   </Tab>
 </Tabs>
 
-### Step 5: Add metadata
+### Step 5: Add metadata and SerwistProvider
 
-Add the following content to app/layout.tsx or pages/\_app.tsx:
+Add the following content to app/layout.tsx and/or pages/\_app.tsx:
 
 <Tabs id="updating-layout" tabs={[["app/layout.tsx", "app-layout-tsx"], ["pages/_app.tsx", "pages-app-tsx"]]}>
   <Tab id="app-layout-tsx">
 
 ```tsx
-// app/lib/client.ts
+// app/serwist.ts
 "use client";
 export { SerwistProvider } from "@serwist/turbopack/react";
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { SerwistProvider } from "./lib/client";
+import { SerwistProvider } from "./serwist";
 
 const APP_NAME = "PWA App";
 const APP_DEFAULT_TITLE = "My Awesome PWA App";

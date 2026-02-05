@@ -8,7 +8,7 @@
   // import LogoWebpack from "$components/icons/logo-webpack.svelte";
   import { clsx } from "$lib/clsx";
 
-  import Preview from "./Preview.svx";
+  import Preview from "./preview.svx";
 </script>
 
 <div
