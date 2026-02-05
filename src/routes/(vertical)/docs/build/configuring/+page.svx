@@ -1,8 +1,8 @@
 ---
 layout: docs
+title: "Configuring"
+footer: "@serwist/build"
 ---
-# Configuring
-
 ## Available options
 
 There are various options you can use to customize the behaviour of the plugin:

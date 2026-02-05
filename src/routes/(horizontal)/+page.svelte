@@ -1,5 +1,5 @@
 <script>
-  import Code from "$components/Code.svelte";
+  import Code from "$components/code.svelte";
   // import LogoJs from "$components/icons/LogoJs.svelte";
   // import LogoNextjs from "$components/icons/LogoNextjs.svelte";
   // import LogoNuxt from "$components/icons/LogoNuxt.svelte";
@@ -8,7 +8,7 @@
   // import LogoWebpack from "$components/icons/LogoWebpack.svelte";
   import { clsx } from "$lib/clsx";
 
-  import Preview from "./Preview.svx";
+  import Preview from "./preview.svx";
 </script>
 
 <div

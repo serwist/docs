@@ -1,13 +1,13 @@
 ---
 layout: docs
+title: "Getting started"
+footer: "@serwist/next"
 ---
 <script>
-  import Callout from "$components/Callout.svelte";
-  import Tabs from "$components/Tabs.svelte";
-  import Tab from "$components/Tab.svelte";
+  import Callout from "$components/callout.svelte";
+  import Tabs from "$components/tabs.svelte";
+  import Tab from "$components/tab.svelte";
 </script>
-
-# Getting started
 
 <Callout type="info">
 
@@ -64,8 +64,11 @@ Update or create your Next.js configuration file with the following content:
 import { spawnSync } from "node:child_process";
 import withSerwistInit from "@serwist/next";
 
-// Using `git rev-parse HEAD` might not the most efficient
-// way of determining a revision. You may prefer to use
+// This is optional!
+// A revision helps Serwist version a precached page. This
+// avoids outdated precached responses being used. Using
+// `git rev-parse HEAD` might not the most efficient way
+// of determining a revision, however. You may prefer to use
 // the hashes of every extra file you precache.
 const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
 
@@ -100,8 +103,11 @@ export default async (phase) => {
   const nextConfig = {};
 
   if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    // Using `git rev-parse HEAD` might not the most efficient
-    // way of determining a revision. You may prefer to use
+    // This is optional!
+    // A revision helps Serwist version a precached page. This
+    // avoids outdated precached responses being used. Using
+    // `git rev-parse HEAD` might not the most efficient way
+    // of determining a revision, however. You may prefer to use
     // the hashes of every extra file you precache.
     const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();
 
@@ -134,8 +140,11 @@ module.exports = async (phase) => {
   const nextConfig = {};
 
   if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    // Using `git rev-parse HEAD` might not the most efficient
-    // way of determining a revision. You may prefer to use
+    // This is optional!
+    // A revision helps Serwist version a precached page. This
+    // avoids outdated precached responses being used. Using
+    // `git rev-parse HEAD` might not the most efficient way
+    // of determining a revision, however. You may prefer to use
     // the hashes of every extra file you precache.
     const { spawnSync } = require("node:child_process");
     const revision = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout ?? crypto.randomUUID();

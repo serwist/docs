@@ -1,12 +1,12 @@
 ---
 layout: docs
+title: "Worker exports"
+footer: "@serwist/vite"
 ---
 <script>
-  import Tabs from "$components/Tabs.svelte";
-  import Tab from "$components/Tab.svelte";
+  import Tabs from "$components/tabs.svelte";
+  import Tab from "$components/tab.svelte";
 </script>
-
-# Worker exports
 
 ## Introduction
 

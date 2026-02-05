@@ -71,8 +71,8 @@ If you use Visual Studio Code, you may want to set .vscode/settings.json to this
 
 ````
 <script>
-  import Tabs from "$components/Tabs.svelte";
-  import Tab from "$components/Tab.svelte";
+  import Tabs from "$components/tabs.svelte";
+  import Tab from "$components/tab.svelte";
 </script>
 
 <Tabs id="install-serwist-next-instruction" tabs={[["npm", "npm-tab"], ["yarn", "yarn-tab"], ["pnpm", "pnpm-tab"], ["bun", "bun-tab"]]}>

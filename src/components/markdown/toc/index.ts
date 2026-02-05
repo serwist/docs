@@ -1,2 +1,2 @@
-export { default as TocLink } from "./Link.svelte";
-export { default as TocParagraph } from "./Paragraph.svelte";
+export { default as TocLink } from "./link.svelte";
+export { default as TocParagraph } from "./paragraph.svelte";

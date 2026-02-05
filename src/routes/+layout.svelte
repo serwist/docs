@@ -1,23 +1,22 @@
 <script lang="ts">
-  import "$components/TwoslashHover.svelte";
+  import "$components/twoslash-hover.svelte";
   import "../app.css";
 
-  import { useSerwist } from "@serwist/svelte/client";
-
   import { mount, unmount } from "svelte";
+  import { useSerwist } from "@serwist/svelte/client";
 
   import { dev } from "$app/environment";
   import { page } from "$app/state";
-  import Twoslash from "$components/Twoslash.svelte";
+  import GlobalSvgDefs from "$components/icons/index.svelte";
+  import Twoslash from "$components/twoslash.svelte";
   import { CANONICAL_URL, REROUTE } from "$lib/constants";
-  import { isColorScheme } from "$lib/isColorScheme";
-  import { colorScheme } from "$lib/stores/colorScheme";
+  import { isColorScheme } from "$lib/is-color-scheme";
+  import { colorScheme } from "$lib/stores/color-scheme";
 
   const { data, children } = $props();
   const isDark = $derived($colorScheme === "dark");
   const title = $derived(page.data.title ? `${page.data.title} - Serwist` : "Serwist");
   const ogImage = $derived(page.data.ogImage ?? data.fallbackOgImage);
-
   const { serwist } = useSerwist("/service-worker.js", { type: dev ? "module" : "classic" });
 
   $effect(() => {
@@ -48,14 +47,18 @@
 </script>
 
 <svelte:head>
-  <title>{title}</title>
+  {#if !page.data.noDefaultTitle}
+    <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta name="twitter:title" content={title} />
+  {/if}
   <link rel="canonical" href={new URL(page.url.pathname in REROUTE ? REROUTE[page.url.pathname] : page.url.pathname, CANONICAL_URL).href} />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <meta property="og:title" content={title} />
   <meta property="og:image" content={ogImage} />
-  <meta name="twitter:title" content={title} />
   <meta name="theme-color" content={isDark ? "#000000" : "#FFFFFF"} />
 </svelte:head>
 
+<GlobalSvgDefs />
 <a class="absolute -top-full z-100 text-black underline focus:top-0 dark:text-white" href="#main-content">Skip to main content</a>
 {@render children()}
+

@@ -1,13 +1,13 @@
 ---
 layout: docs
+title: "Getting started"
+footer: "@serwist/vite"
 ---
 <script>
-  import Callout from "$components/Callout.svelte";
-  import Tabs from "$components/Tabs.svelte";
-  import Tab from "$components/Tab.svelte";
+  import Callout from "$components/callout.svelte";
+  import Tabs from "$components/tabs.svelte";
+  import Tab from "$components/tab.svelte";
 </script>
-
-# Getting started
 
 <Callout>
   This guide uses React, but it applies to any project using Vite. For some frameworks, we also have recipes tailored to them:

@@ -1,8 +1,7 @@
 ---
 layout: docs
+title: "@serwist/build"
 ---
-# @serwist/build
-
 ## Introduction
 
 `@serwist/build` is a module that integrates into your build process, helping you generate a manifest of local files that should be precached.

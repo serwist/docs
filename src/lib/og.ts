@@ -1,10 +1,8 @@
-import { dev } from "$app/environment";
 import { Resvg } from "@resvg/resvg-js";
-import { type ReactElement, createElement } from "react";
+import { createElement, type ReactElement } from "react";
 import type { Font } from "satori";
 import satori from "satori";
-import { encodeBase64 } from "./base64";
-import type { OpenGraphImage } from "./types";
+import { dev } from "$app/environment";
 
 let geistFont: Font | null = null;
 
@@ -134,11 +132,4 @@ export const getOpenGraphTemplate = (title: string, desc: string) => {
       ),
     ),
   );
-};
-
-export const encodeOpenGraphImage = (image: OpenGraphImage) => {
-  if (typeof image === "string") {
-    return `/og/${encodeBase64("A Swiss Army knife for service workers.")}/${encodeBase64(image)}.png`;
-  }
-  return `/og/${encodeBase64(image.desc)}/${encodeBase64(image.title)}.png`;
 };

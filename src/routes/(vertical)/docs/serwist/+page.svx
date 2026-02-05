@@ -1,8 +1,7 @@
 ---
 layout: docs
+title: "serwist"
 ---
-# serwist
-
 ## Introduction
 
 `serwist` is the core of Serwist. It contains tools designed to help you write service workers with ease. Have a look around:

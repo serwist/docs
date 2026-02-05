@@ -1,6 +1,6 @@
 <script>
   import { page } from "$app/state";
-  import Navbar from "$components/layouts/Navbar.svelte";
+  import Navbar from "$components/layouts/navbar.svelte";
 </script>
 
 <Navbar />
