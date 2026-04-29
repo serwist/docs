@@ -41,6 +41,8 @@
   --color-neutral-925: #0d0d0d;
   --color-neutral-1000: #111111;
 
+  --color-comment: light-dark(oklch(43.9% 0 0), oklch(70.8% 0 0));
+
   @keyframes fly {
     from {
       opacity: 0;
@@ -99,12 +101,6 @@
   }
   & .text-toc > * {
     @apply xl:text-accent-light xl:dark:text-accent-dark;
-  }
-}
-
-@utility text-comment {
-  & {
-    @apply text-neutral-600 dark:text-neutral-400;
   }
 }
 
@@ -180,7 +176,7 @@
   }
   html,
   body {
-    @apply m-0 flex h-full w-full p-0;
+    @apply m-0 flex h-full w-full p-0 dark:scheme-dark;
   }
   html {
     @apply scroll-smooth;

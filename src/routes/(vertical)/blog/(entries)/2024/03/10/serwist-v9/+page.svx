@@ -455,7 +455,6 @@ To migrate, uninstall `@serwist/vite`, remove `@serwist/vite/integration/svelte.
   <Tab id="old">
 
 ```ts
-/// <reference no-default-lib="true"/>
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
 /// <reference types="@sveltejs/kit" />
@@ -485,7 +484,6 @@ installSerwist({
   <Tab id="new">
 
 ```ts
-/// <reference no-default-lib="true"/>
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
 /// <reference types="@sveltejs/kit" />
