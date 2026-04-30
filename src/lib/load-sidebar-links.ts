@@ -228,6 +228,27 @@ export const loadSidebarLinks = (sidebarType: string | null | undefined): Sideba
             },
           ],
         },
+        {
+          title: "Configuring",
+          children: [
+            { title: "additionalPrecacheEntries", href: "/docs/cli/configuring/additional-precache-entries" },
+            { title: "disablePrecacheManifest", href: "/docs/cli/configuring/disable-precache-manifest" },
+            { title: "dontCacheBustURLsMatching", href: "/docs/cli/configuring/dont-cache-bust-urls-matching" },
+            { title: "esbuildOptions", href: "/docs/cli/configuring/esbuild-options" },
+            { title: "globDirectory", href: "/docs/cli/configuring/glob-directory" },
+            { title: "globFollow", href: "/docs/cli/configuring/glob-follow" },
+            { title: "globIgnores", href: "/docs/cli/configuring/glob-ignores" },
+            { title: "globPatterns", href: "/docs/cli/configuring/glob-patterns" },
+            { title: "globStrict", href: "/docs/cli/configuring/glob-strict" },
+            { title: "injectionPoint", href: "/docs/cli/configuring/injection-point" },
+            { title: "manifestTransforms", href: "/docs/cli/configuring/manifest-transforms" },
+            { title: "maximumFileSizeToCacheInBytes", href: "/docs/cli/configuring/maximum-file-size-to-cache-in-bytes" },
+            { title: "modifyURLPrefix", href: "/docs/cli/configuring/modify-url-prefix" },
+            { title: "swDest", href: "/docs/cli/configuring/sw-dest" },
+            { title: "swSrc", href: "/docs/cli/configuring/sw-src" },
+            { title: "templatedURLs", href: "/docs/cli/configuring/templated-urls" },
+          ],
+        },
       ];
     case "next":
       return [

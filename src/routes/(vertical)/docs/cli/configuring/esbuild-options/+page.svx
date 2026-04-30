@@ -1,0 +1,42 @@
+---
+layout: docs
+title: "esbuildOptions"
+---
+<script>
+  import Tabs from "$components/tabs.svelte";
+  import Tab from "$components/tab.svelte";
+</script>
+
+## First added
+
+9.4.0
+
+## About
+
+Options to configure the esbuild instance used to bundle the service worker.
+
+This option is only applicable to the `build` command.
+
+## Usage
+
+<Tabs id="usage-example" tabs={[["serwist.config.js", "serwist-config-js"]]}>
+  <Tab id="serwist-config-js">
+
+```javascript twoslash
+/** @type {import("@serwist/cli").BuildOptions} */
+export default {
+  globDirectory: "static",
+  globPatterns: ["**/*.{ico,html}"],
+  swSrc: "src/sw.js",
+  swDest: "dist/sw.js",
+  esbuildOptions: {
+    target: ["chrome111", "edge111", "firefox111", "safari16"],
+    define: {
+      "self.__NOT_SO_SECRET_MESSAGE": "If you are reading this, have a nice day!", 
+    },
+  },
+};
+```
+
+  </Tab>
+</Tabs>

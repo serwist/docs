@@ -1,10 +1,10 @@
-import type { Component } from "svelte";
-import type { SVGAttributes } from "svelte/elements";
 import LogoNextjs from "$components/icons/logo-nextjs.svelte";
 import LogoNuxt from "$components/icons/logo-nuxt.svelte";
 import LogoSerwist from "$components/icons/logo-serwist.svelte";
 import LogoVite from "$components/icons/logo-vite.svelte";
 import LogoWebpack from "$components/icons/logo-webpack.svelte";
+import type { Component } from "svelte";
+import type { SVGAttributes } from "svelte/elements";
 import type { BlogEntry } from "./types";
 
 export const COLOR_SCHEMES = ["dark", "light"] as const;
@@ -18,6 +18,25 @@ export const GITHUB_REPO_URL = "https://github.com/serwist/serwist";
 type FrameworkSharedOptions = Record<string, string[]>;
 
 const FRAMEWORKS_OPTIONS_MAP = {
+  cli: {
+    build: [
+      "additional-precache-entries",
+      "disable-precache-manifest",
+      "dont-cache-bust-urls-matching",
+      "glob-directory",
+      "glob-follow",
+      "glob-ignores",
+      "glob-patterns",
+      "glob-strict",
+      "injection-point",
+      "manifest-transforms",
+      "maximum-file-size-to-cache-in-bytes",
+      "modify-url-prefix",
+      "sw-dest",
+      "sw-src",
+      "templated-urls",
+    ],
+  },
   next: {
     build: [
       "additional-precache-entries",

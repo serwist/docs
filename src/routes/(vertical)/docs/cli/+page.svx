@@ -56,7 +56,10 @@ bun add -D @serwist/cli
 The CLI provides two main commands:
 
 * `wizard` — Runs the configuration wizard, which will generate a config file based on answers to questions.
-* `inject-manifest` — Takes an existing service worker file and creates a copy of it with a precache manifest injected. The precache manifest is generated based on the options in the config file (defaults to "serwist.config.js"). If `--watch` is provided, the CLI will stay running and rebuild the service worker each time a file in the precache manifest changes.
+* `inject-manifest` — Takes an existing service worker file and creates a copy of it with a precache manifest injected. The precache manifest is generated based on the options
+in the config file (defaults to "serwist.config.js"). If `--watch` is provided, the CLI will stay running and rebuild the service worker each time a file in the precache manifest changes.
+* `build` — Takes a service worker file and bundles it with a precache manifest injected using esbuild. The precache manifest is generated based on the options in the config file
+(defaults to "serwist.config.js"). If `--watch` is provided, the CLI will stay running and rebuild the service worker each time a file in the precache manifest changes.
 
 ### wizard
 
@@ -106,7 +109,9 @@ bun serwist wizard
 
 ### inject-manifest
 
-When `inject-manifest` is run, it looks for a specific string, `self.__WB_MANIFEST` by default, in your source service worker file, replaces it with a list of URLs to precache, and writes the service worker file to its destination location. The rest of the code in your source service worker is left untouched. You may want to use an additional tool to bundle the resulting service worker for you.
+When `inject-manifest` is run, it looks for a specific string, `self.__WB_MANIFEST` by default, in your source service worker file, replaces it with a list of URLs to precache, and
+writes the service worker file to its destination location. The rest of the code in your source service worker is left untouched. If you need the service worker bundled, you can
+use the `build` command instead.
 
 To run the command:
 
@@ -141,6 +146,45 @@ bun serwist inject-manifest
   </Tab>
 </Tabs>
 
+
+### build
+
+When `build` is run, it looks for a specific string, `self.__WB_MANIFEST` by default, in your source service worker file, replaces it with a list of URLs to precache, and bundles the
+resulting service worker file to its destination location using esbuild.
+
+To run the command:
+
+<Tabs id="command-build" tabs={[["npm", "npm"], ["yarn", "yarn"], ["pnpm", "pnpm"], ["bun", "bun"]]}>
+  <Tab id="npm">
+
+```bash
+npx @serwist/cli build
+```
+
+  </Tab>
+  <Tab id="yarn">
+
+```bash
+yarn serwist build
+```
+
+  </Tab>
+  <Tab id="pnpm">
+
+```bash
+pnpm serwist build
+```
+
+  </Tab>
+  <Tab id="bun">
+
+```bash
+bun serwist build
+```
+
+  </Tab>
+</Tabs>
+
 ## Configuration
 
 Edit your config file. The full set of configuration options can be found in [the reference documentation](/docs/build/configuring).
@@ -149,6 +193,7 @@ Edit your config file. The full set of configuration options can be found in [th
 
 If you have an existing build process that is based entirely on npm scripts, then `@serwist/cli` is a good choice.
 
-If you are using webpack, Vite, Next.js, or SvelteKit, Serwist provides [@serwist/webpack-plugin](/docs/webpack-plugin), [@serwist/vite](/docs/vite), [@serwist/next](/docs/next), and [@serwist/svelte](/docs/svelte) respectively.
+If you are using webpack, Vite, Next.js, or SvelteKit, Serwist provides [`@serwist/webpack-plugin`](/docs/webpack-plugin), [`@serwist/vite`](/docs/vite),
+[`@serwist/next`](/docs/next), and [`@serwist/svelte`](/docs/svelte) respectively. Some of these packages might require `@serwist/cli`.
 
-If you're currently using Gulp, Grunt, or some other Node.js-based build tool, integrating [@serwist/build](/docs/build) into your build script should be preferred.
+If you're currently using Gulp, Grunt, or some other Node.js-based build tool, integrating [`@serwist/build`](/docs/build) into your build script should be preferred.

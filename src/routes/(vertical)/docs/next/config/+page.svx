@@ -63,6 +63,11 @@ bun add -D @serwist/next @serwist/cli serwist esbuild concurrently
   </Tab>
 </Tabs>
 
+## Configuring
+
+Configurator mode inherits [`@serwist/cli`'s configuration options](/docs/cli/configuring/additional-precache-entries) rather than `@serwist/next`'s. Additionally, to disable
+the automatic precaching of prerendered routes, set `precachePrerendered` to `false`.
+
 ## Implementation
 
 ### Step 1: Configure Serwist
