@@ -3,7 +3,7 @@
 @import "./twoslash.css" layer(base);
 @import "tailwindcss";
 
-@variant dark (&:is([data-theme='dark'] *));
+@custom-variant dark (&:where([data-theme=dark] *));
 
 :root {
   --navbar: 4.0625rem;
@@ -40,8 +40,6 @@
   --color-neutral-250: #dddddd;
   --color-neutral-925: #0d0d0d;
   --color-neutral-1000: #111111;
-
-  --color-comment: light-dark(oklch(43.9% 0 0), oklch(70.8% 0 0));
 
   @keyframes fly {
     from {
@@ -167,6 +165,12 @@
   }
 }
 
+@utility text-comment {
+  & {
+    @apply text-neutral-600 dark:text-neutral-400;
+  }
+}
+
 @layer base {
   * {
     @apply relative box-border min-w-0;
@@ -176,7 +180,7 @@
   }
   html,
   body {
-    @apply m-0 flex h-full w-full p-0 dark:scheme-dark;
+    @apply m-0 flex h-full w-full p-0;
   }
   html {
     @apply scroll-smooth;
